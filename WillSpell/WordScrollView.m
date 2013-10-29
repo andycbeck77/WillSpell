@@ -7,7 +7,7 @@
 //
 
 #import "WordScrollView.h"
-@interface WordScrollView()
+@interface WordScrollView() 
 @property (strong, nonatomic) NSArray *wordList;
 @property (nonatomic) NSUInteger wordIndex;
 @end

@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface LetterScrollView : UIScrollView
-@property (nonatomic) NSString *selectedLetter;
 
-- (void) setup;
+@property (strong, nonatomic) NSString *word;
+@property (nonatomic) NSUInteger selectedLetterIndex;
+
+- (void) setupWord;
+
+//////////////////
+
+@property (nonatomic) NSString *selectedLetter;
++ (NSString *) getCurrentLetter;
+- (void) setupLetters;
+
+
 @end

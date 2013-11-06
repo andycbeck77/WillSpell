@@ -7,24 +7,31 @@
 //
 
 #import "LetterScrollView.h"
+#import "MysteryWord.h"
+
 @interface LetterScrollView()
+
 @property (strong, nonatomic) NSArray *letterList;
 @property (nonatomic) NSUInteger letterIndex;
 
 @property (strong, nonatomic) NSArray *wordList;
 @property (nonatomic) NSUInteger wordIndex;
+
 @end
+
+
 @implementation LetterScrollView
 
 #define WORD_WIDTH 35
-#define WORD_HEIGHT 35
+#define WORD_HEIGHT 25
 #define Y_START 5
 
 #define WORD_Y_START 5
-#define LETTER_Y_START  50
+#define LETTER_Y_START  75
+
 
 - (NSArray *)wordList {
-    return @[@"Apple",@"Banana",@"Pear"];
+    return @[@"APPLE",@"BANANA",@"PEAR"];
 }
 
 - (NSArray *)letterList {
@@ -80,32 +87,48 @@
 
 - (void)wordLetterSelected:(id)sender {
     UIButton *clicked = (UIButton *) sender;
-    NSLog(clicked.titleLabel.text);
+    NSLog(clicked.titleLabel.text, nil);
 }
 
-/////////////////////////////////////////////////////////////
+
+////////////////////////////  LETTER  /////////////////////////////////
 
 - (void) setupLetters {
     
     if (self) {
         
+        NSUInteger x = 0;
+        NSUInteger y = LETTER_Y_START;
+        NSUInteger xcounter = 0;
+        NSUInteger ycounter = 1;
         for (NSUInteger currentLetterIndex = 0; currentLetterIndex < [self.letterList count]; currentLetterIndex++) {
             
             NSString *currentLetter = self.letterList[currentLetterIndex];
             
-            NSUInteger x = 5 + (WORD_WIDTH * currentLetterIndex);
-            [self addSubview:[self createButtonForLetters:currentLetter atX:x]];
+            // 8 letters per row then new row
+            if (xcounter < 9) {
+                x = 5 + (WORD_WIDTH * xcounter);
+                xcounter++;
+            } else {
+                xcounter = 0;
+                x = 5 + (WORD_WIDTH * xcounter);
+                y = LETTER_Y_START + (WORD_HEIGHT * ycounter) + 5;
+                xcounter++;
+                ycounter++;
+            }
+            
+            [self addSubview:[self createButtonForLetters:currentLetter atX:x atY:y]];
         }
     }
 }
 
-- (UIButton *) createButtonForLetters:(NSString *)title atX:(NSUInteger)x{
+- (UIButton *) createButtonForLetters:(NSString *)title atX:(NSUInteger)x atY:(NSUInteger)y {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
                action:@selector(letterSelected:)
      forControlEvents:UIControlEventTouchDown];
     [button setTitle:title forState:UIControlStateNormal];
-    button.frame = CGRectMake(x,LETTER_Y_START,WORD_WIDTH, WORD_HEIGHT);
+    button.frame = CGRectMake(x,y,WORD_WIDTH, WORD_HEIGHT);
     
     // add drag listener
 	[button addTarget:self action:@selector(wasDragged:withEvent:)
@@ -130,10 +153,6 @@
 
 - (NSString *) selectedLetter {
     return (_selectedLetter) ? _selectedLetter : @"?";
-}
-
-- (NSString *) getCurrentLetter {
-    return self.selectedLetter;
 }
 
 - (void)wasDragged:(UIButton *)button withEvent:(UIEvent *)event

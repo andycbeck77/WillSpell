@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6985935518288B30000E464E /* MysteryWord.m in Sources */ = {isa = PBXBuildFile; fileRef = 6985935418288B30000E464E /* MysteryWord.m */; };
 		69BB539717ED322C000CA484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB539617ED322C000CA484 /* UIKit.framework */; };
 		69BB539917ED322C000CA484 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB539817ED322C000CA484 /* Foundation.framework */; };
 		69BB539B17ED322C000CA484 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB539A17ED322C000CA484 /* CoreGraphics.framework */; };
@@ -20,11 +21,13 @@
 		69BB53BE17ED36EB000CA484 /* SpellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BB53BD17ED36EB000CA484 /* SpellViewController.m */; };
 		69BB53C717ED381A000CA484 /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BB53C617ED381A000CA484 /* ImageView.m */; };
 		69BB53CA17ED3958000CA484 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 69BB53C917ED3958000CA484 /* apple.png */; };
-		69E8551217F51F90006A85C6 /* WordScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E8551117F51F90006A85C6 /* WordScrollView.m */; };
+		69C6ACAB1829E0060096EA0B /* LetterList.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6ACAA1829E0060096EA0B /* LetterList.m */; };
 		69E8551517F51FD1006A85C6 /* LetterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E8551417F51FD1006A85C6 /* LetterScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6985935318288B30000E464E /* MysteryWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MysteryWord.h; path = model/MysteryWord.h; sourceTree = "<group>"; };
+		6985935418288B30000E464E /* MysteryWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MysteryWord.m; path = model/MysteryWord.m; sourceTree = "<group>"; };
 		69BB539317ED322C000CA484 /* WillSpell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WillSpell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BB539617ED322C000CA484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69BB539817ED322C000CA484 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,8 +47,8 @@
 		69BB53C517ED381A000CA484 /* ImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
 		69BB53C617ED381A000CA484 /* ImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
 		69BB53C917ED3958000CA484 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
-		69E8551017F51F90006A85C6 /* WordScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordScrollView.h; sourceTree = "<group>"; };
-		69E8551117F51F90006A85C6 /* WordScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordScrollView.m; sourceTree = "<group>"; };
+		69C6ACA91829E0060096EA0B /* LetterList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LetterList.h; path = model/LetterList.h; sourceTree = "<group>"; };
+		69C6ACAA1829E0060096EA0B /* LetterList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LetterList.m; path = model/LetterList.m; sourceTree = "<group>"; };
 		69E8551317F51FD1006A85C6 /* LetterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterScrollView.h; sourceTree = "<group>"; };
 		69E8551417F51FD1006A85C6 /* LetterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +67,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6985935218288AF7000E464E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				6985935318288B30000E464E /* MysteryWord.h */,
+				6985935418288B30000E464E /* MysteryWord.m */,
+				69C6ACA91829E0060096EA0B /* LetterList.h */,
+				69C6ACAA1829E0060096EA0B /* LetterList.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		69BB538A17ED322C000CA484 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +111,11 @@
 				69BB53AE17ED322C000CA484 /* MainStoryboard.storyboard */,
 				69BB53BC17ED36EB000CA484 /* SpellViewController.h */,
 				69BB53BD17ED36EB000CA484 /* SpellViewController.m */,
-				69E8551017F51F90006A85C6 /* WordScrollView.h */,
-				69E8551117F51F90006A85C6 /* WordScrollView.m */,
 				69E8551317F51FD1006A85C6 /* LetterScrollView.h */,
 				69E8551417F51FD1006A85C6 /* LetterScrollView.m */,
 				69BB53C517ED381A000CA484 /* ImageView.h */,
 				69BB53C617ED381A000CA484 /* ImageView.m */,
+				6985935218288AF7000E464E /* model */,
 				69BB53C817ED3958000CA484 /* images */,
 				69BB539D17ED322C000CA484 /* Supporting Files */,
 			);
@@ -204,8 +217,9 @@
 				69BB53A717ED322C000CA484 /* AppDelegate.m in Sources */,
 				69BB53BE17ED36EB000CA484 /* SpellViewController.m in Sources */,
 				69BB53C717ED381A000CA484 /* ImageView.m in Sources */,
-				69E8551217F51F90006A85C6 /* WordScrollView.m in Sources */,
 				69E8551517F51FD1006A85C6 /* LetterScrollView.m in Sources */,
+				6985935518288B30000E464E /* MysteryWord.m in Sources */,
+				69C6ACAB1829E0060096EA0B /* LetterList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

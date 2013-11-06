@@ -10,15 +10,10 @@
 
 @interface LetterScrollView : UIScrollView
 
-@property (strong, nonatomic) NSString *word;
 @property (nonatomic) NSUInteger selectedLetterIndex;
+@property (nonatomic) NSString *selectedLetter;
 
 - (void) setupWord;
-
-//////////////////
-
-@property (nonatomic) NSString *selectedLetter;
-+ (NSString *) getCurrentLetter;
 - (void) setupLetters;
 
 

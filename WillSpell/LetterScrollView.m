@@ -8,17 +8,22 @@
 
 #import "LetterScrollView.h"
 #import "MysteryWord.h"
+#import "ObjectLocation.h"
 
 @interface LetterScrollView()
 
 @property (strong, nonatomic) NSArray *letterList;
 @property (nonatomic) NSUInteger letterIndex;
 
-@property (strong, nonatomic) NSArray *wordList;
 @property (nonatomic) NSUInteger wordIndex;
 
-@end
+@property (strong, nonatomic) MysteryWord *mysteryWord;
 
+@property (strong, nonatomic) NSMutableArray *wordButtons;
+@property (strong, nonatomic) NSMutableArray *letterButtons;
+
+@property (strong, nonatomic) NSMutableArray *letterButtonLocations;
+@end
 
 @implementation LetterScrollView
 
@@ -29,10 +34,6 @@
 #define WORD_Y_START 5
 #define LETTER_Y_START  75
 
-
-- (NSArray *)wordList {
-    return @[@"APPLE",@"BANANA",@"PEAR"];
-}
 
 - (NSArray *)letterList {
     return @[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
@@ -47,20 +48,58 @@
     return self;
 }
 
-//////////////////////////////////// WORD ////////////////////////////////////
+- (NSMutableArray *) letterButtons {
+    if (!_letterButtons) {
+        _letterButtons = [[NSMutableArray alloc] init];
+    }
+    return _letterButtons;
+}
+
+- (NSMutableArray *) wordButtons {
+    if (!_wordButtons) {
+        _wordButtons = [[NSMutableArray alloc] init];
+    }
+    return _wordButtons;
+}
+
+- (NSMutableArray *) letterButtonLocations {
+    if (!_letterButtonLocations) {
+        _letterButtonLocations = [[NSMutableArray alloc] init];
+    }
+    return _letterButtonLocations;
+}
+
+- (MysteryWord *) mysteryWord {
+    if (!_mysteryWord) {
+        _mysteryWord = [[MysteryWord alloc] init];
+    }
+    return _mysteryWord;
+}
 
 - (void) setupWord {
     self.wordIndex=0;
     if (self) {
-        NSString *currentWord = self.wordList[self.wordIndex];
-        for (NSUInteger currentLetterIndex = 0; currentLetterIndex < [currentWord length]; currentLetterIndex++) {
-            
-            NSRange range = NSMakeRange (currentLetterIndex, 1);
-            NSString *currentLetter = [currentWord substringWithRange:range];
-            
-            NSUInteger x = 5 + (WORD_WIDTH * currentLetterIndex);
-            [self addSubview:[self createButtonForWord:currentLetter atX:x]];
-        }
+        [self.mysteryWord initCurrentWordByIndex:self.wordIndex];
+        [self refreshWord];
+    }
+}
+
+- (void) refreshWord {
+    NSMutableArray *currentWord = [self.mysteryWord guessedWord];
+    for (NSUInteger currentLetterIndex = 0; currentLetterIndex < currentWord.count; currentLetterIndex++) {
+        
+        NSString *currentLetter = currentWord[currentLetterIndex];
+        
+        NSUInteger x = 5 + (WORD_WIDTH * currentLetterIndex);
+        [self addSubview:[self createButtonForWord:currentLetter atX:x]];
+    }
+}
+
+- (void) resetWordLetters {
+    NSMutableArray *currentWord = [self.mysteryWord guessedWord];
+    for (NSUInteger index = 0; index < self.wordButtons.count; index++) {
+        UIButton *obj = self.wordButtons[index];
+        [obj setTitle:currentWord[index] forState:UIControlStateNormal];
     }
 }
 
@@ -71,6 +110,8 @@
      forControlEvents:UIControlEventTouchDown];
     [button setTitle:title forState:UIControlStateNormal];
     button.frame = CGRectMake(x,WORD_Y_START,WORD_WIDTH, WORD_HEIGHT);
+    [self.wordButtons addObject:button];
+    
     return button;
 }
 
@@ -89,9 +130,6 @@
     UIButton *clicked = (UIButton *) sender;
     NSLog(clicked.titleLabel.text, nil);
 }
-
-
-////////////////////////////  LETTER  /////////////////////////////////
 
 - (void) setupLetters {
     
@@ -134,25 +172,49 @@
 	[button addTarget:self action:@selector(wasDragged:withEvent:)
     // forControlEvents:UIControlEventTouchDragInside];
       forControlEvents:UIControlEventTouchDragInside|UIControlEventTouchDragOutside];
-     
+    
+    [button addTarget:self action:@selector(wasDropped:withEvent:)
+     forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
+    
+    [self.letterButtons addObject:button];
+    
+    // store location for reset
+    [self.letterButtonLocations addObject: [NSValue valueWithCGPoint:CGPointMake(button.center.x, button.center.y)]];
+    
     return button;
 }
 
 - (void)letterSelected:(id)sender {
     UIButton *clicked = (UIButton *) sender;
     NSString *letter = clicked.titleLabel.text;
-    self.selectedLetter = letter;
     NSLog(@"%@", letter);
 }
 
-@synthesize selectedLetter = _selectedLetter;
+- (void)wasDropped:(UIButton *)button withEvent:(UIEvent *)event
+{
+    UITouch *touch = [[event touchesForView:button] anyObject];
+	CGPoint location = [touch locationInView:button];
 
-- (void) setSelectedLetter:(NSString *)selectedLetter {
-    _selectedLetter = selectedLetter;
-}
-
-- (NSString *) selectedLetter {
-    return (_selectedLetter) ? _selectedLetter : @"?";
+    for (NSUInteger index = 0; index < self.wordButtons.count; index++) {
+        UIButton *obj = self.wordButtons[index];
+        
+        CGPoint wordButtonCenter = obj.center;
+        CGPoint letterButtonCenter = button.center;
+        
+        if (fabsf(wordButtonCenter.x-letterButtonCenter.x)<WORD_WIDTH-10
+            && fabsf(wordButtonCenter.y-letterButtonCenter.y)<WORD_HEIGHT-5) {
+            
+            BOOL correctGuess = [self.mysteryWord makeGuess:button.titleLabel.text atIndex:index];
+            if (correctGuess) {
+                [self resetWordLetters];
+            }
+            
+            //Move back button
+            NSValue *objLocation = [self.letterButtonLocations objectAtIndex:[self.letterButtons indexOfObject:button]];
+            CGPoint origin = [objLocation CGPointValue];
+            button.center = CGPointMake(origin.x, origin.y);
+        }
+    }
 }
 
 - (void)wasDragged:(UIButton *)button withEvent:(UIEvent *)event
@@ -170,7 +232,5 @@
 	button.center = CGPointMake(button.center.x + delta_x,
                                 button.center.y + delta_y);
 }
-
-////////////////////////////////////////////////
 
 @end

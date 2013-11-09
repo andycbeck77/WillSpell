@@ -14,7 +14,9 @@
 @property (strong, nonatomic) NSMutableArray *guessedWord;
 @property (strong, nonatomic) NSMutableArray *actualWord;
 
-- (void) initCurrentWord:(NSString *)word;
+- (void) initCurrentWord:(NSString *) word;
+- (void) initCurrentWordByIndex:(NSInteger) wordIndex;
+
 - (BOOL) makeGuess:(NSString *)letter atIndex:(NSUInteger) index;
 
 @end

@@ -19,21 +19,31 @@
 }
 
 - (NSMutableArray *) guessedWord {
+    if (!_guessedWord) {
+        _guessedWord = [[NSMutableArray alloc] init];
+    }
     return _guessedWord;
 }
 
 - (NSMutableArray *) actualWord {
+    if(!_actualWord) {
+        _actualWord = [[NSMutableArray alloc] init];
+    }
     return _actualWord;
 }
-
+- (void) initCurrentWordByIndex:(NSInteger)wordIndex {
+    [self initCurrentWord:self.wordList[wordIndex]];
+}
 - (void) initCurrentWord:(NSString *)word {
     for (NSUInteger currentLetterIndex = 0; currentLetterIndex < [word length]; currentLetterIndex++) {
         
         NSRange range = NSMakeRange (currentLetterIndex, 1);
         NSString *currentLetter = [word substringWithRange:range];
         
-        _actualWord[currentLetterIndex] = currentLetter;
-        _guessedWord[currentLetterIndex] = @"-";
+        //_actualWord[currentLetterIndex] = currentLetter;
+        [self.actualWord addObject:currentLetter];
+        //_guessedWord[currentLetterIndex] = @"-";
+        [self.guessedWord addObject:@"-"];
     }
 }
 

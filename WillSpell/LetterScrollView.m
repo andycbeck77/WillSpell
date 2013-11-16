@@ -8,7 +8,6 @@
 
 #import "LetterScrollView.h"
 #import "MysteryWord.h"
-#import "ObjectLocation.h"
 
 @interface LetterScrollView()
 
@@ -113,17 +112,6 @@
     [self.wordButtons addObject:button];
     
     return button;
-}
-
-- (UILabel *) createLabelForWord:(NSString *)title atX:(NSUInteger)x {
-    UILabel *lbl1 = [[UILabel alloc] init];
-    [lbl1 setFrame:CGRectMake(x,5,WORD_WIDTH, WORD_HEIGHT)];
-    lbl1.backgroundColor=[UIColor greenColor];
-    lbl1.textColor=[UIColor blackColor];
-    lbl1.userInteractionEnabled=YES;
-    
-    lbl1.text= title;
-    return lbl1;
 }
 
 - (void)wordLetterSelected:(id)sender {
@@ -232,5 +220,6 @@
 	button.center = CGPointMake(button.center.x + delta_x,
                                 button.center.y + delta_y);
 }
+
 
 @end

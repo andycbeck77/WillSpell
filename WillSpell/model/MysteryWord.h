@@ -11,6 +11,7 @@
 @interface MysteryWord : NSObject
 
 @property (strong, nonatomic) NSArray *wordList;
+@property (strong, nonatomic) NSArray *colorList;
 @property (strong, nonatomic) NSMutableArray *guessedWord;
 @property (strong, nonatomic) NSMutableArray *actualWord;
 
@@ -18,5 +19,8 @@
 - (void) initCurrentWordByIndex:(NSInteger) wordIndex;
 
 - (BOOL) makeGuess:(NSString *)letter atIndex:(NSUInteger) index;
+- (void) hint;
+
+- (void) hint:(NSUInteger) numberOfLetters;
 
 @end

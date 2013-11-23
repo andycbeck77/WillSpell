@@ -120,6 +120,12 @@
     
     [self.gameData saveGameData:self.level forLastIndex:self.wordIndex];
 }
+- (IBAction)giveMeAHint:(UIButton *)sender {
+    if (self.letterScrollView) {
+        [self.mysteryWord hint];
+        [self.letterScrollView resetWordLetters:[self.mysteryWord guessedWord]];
+    }
+}
 
 - (IBAction)chooseNextWord:(UIButton *)sender {
     
@@ -132,6 +138,10 @@
     [self.mysteryWord clearWord];
     [self refreshWord];
     [self.imageView changeImage:self.imageList[self.wordIndex]];
+}
+
+- (IBAction)exitSpellViewController:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

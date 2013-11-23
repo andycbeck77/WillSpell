@@ -20,10 +20,6 @@ NSString *const DEFAULT_CHAR = @"-";
     return @[@"APPLE",@"BANANA",@"PEAR",@"ORANGE"];
 }
 
-- (NSArray *)colorList {
-    return @[@"RED",@"YELLOW",@"GREEN",@"ORANGE"];
-}
-
 - (NSMutableArray *) guessedWord {
     if (!_guessedWord) {
         _guessedWord = [[NSMutableArray alloc] init];
@@ -37,6 +33,12 @@ NSString *const DEFAULT_CHAR = @"-";
     }
     return _actualWord;
 }
+
+- (void) clearWord {
+    _actualWord = [[NSMutableArray alloc] init];
+    _guessedWord = [[NSMutableArray alloc] init];
+}
+
 - (void) initCurrentWordByIndex:(NSInteger)wordIndex {
     [self initCurrentWord:self.wordList[wordIndex]];
 }
@@ -70,8 +72,8 @@ NSString *const DEFAULT_CHAR = @"-";
 - (void) hint:(NSUInteger) numberOfLetters {
     BOOL foundMatch = NO;
     while (numberOfLetters > 0) {
-        for (NSUInteger currentLetterIndex = _guessedWord.count; currentLetterIndex > 0; currentLetterIndex--) {
-            if ([DEFAULT_CHAR isEqualToString:_guessedWord[currentLetterIndex]]) {
+        for (NSUInteger currentLetterIndex = _guessedWord.count-1; currentLetterIndex >= 0; currentLetterIndex--) {
+            if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
                 _guessedWord[currentLetterIndex] = _actualWord[currentLetterIndex];
                 numberOfLetters--;
                 foundMatch = YES;

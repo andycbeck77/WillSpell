@@ -44,6 +44,8 @@
     self.spellViewController.level = self.level;
     [self presentViewController:self.spellViewController animated:YES completion:nil];
     
+    NSString *def = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
+    NSLog(@"%@", def);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

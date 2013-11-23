@@ -22,5 +22,6 @@
 - (void) hint;
 
 - (void) hint:(NSUInteger) numberOfLetters;
+- (void) clearWord;
 
 @end

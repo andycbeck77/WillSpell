@@ -35,6 +35,18 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    if (!self.imageName) {
+        self.imageName = @"redapple.png";
+    }
+    
+    [self changeImage:self.imageName];
+            
+}
+
+- (void)refreshImage:(NSString *) imageName {
+    
+    self.imageName = imageName;
+    
     UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:RECTCORNER];
     [roundedRect addClip];
     
@@ -43,13 +55,17 @@
     
     [[UIColor blackColor] setStroke];
     [roundedRect stroke];
-        
-    UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"apple.png"]];
-        
+    
+    UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:self.imageName]];
+    
     CGRect imageRect = CGRectInset(self.bounds, self.bounds.size.width*(1.0-self.imageScaleFactor), self.bounds.size.height*(1.0-self.imageScaleFactor));
-            
+    
     [faceImage drawInRect:imageRect];
-            
+}
+
+- (void)changeImage:(NSString *) imageName {
+    UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:imageName]];
+    [self setImage:faceImage];
 }
 
 @synthesize imageScaleFactor = _imageScaleFactor;

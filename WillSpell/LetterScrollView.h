@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MysteryWord.h"
 
 @interface LetterScrollView : UIScrollView
 
-- (void) setupWord;
-- (void) setupLetters;
+- (void) setupLetters:(NSArray *) letterList;
+- (void) refreshWord:(NSMutableArray *) currentWord withMysteryWord:(MysteryWord *) mysteryWord;
+- (void) resetWordLetters:(NSMutableArray *) currentWord;
+- (void) logRefresh:(NSMutableArray *)word;
+- (void) logRefresh;
 
+@property (strong, nonatomic) MysteryWord *mysteryWord;
 
 @end

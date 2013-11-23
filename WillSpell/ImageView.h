@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImageView : UIView
+@interface ImageView : UIImageView
+
+@property (strong, nonatomic) NSString *imageName;
 
 - (void)pinch:(UIPinchGestureRecognizer *)sender;
-
+- (void)refreshImage:(NSString *) imageName;
+- (void)changeImage:(NSString *) imageName;
 
 @end

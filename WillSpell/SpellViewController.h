@@ -11,4 +11,6 @@
 
 @interface SpellViewController : UIViewController
 
+@property (nonatomic) NSUInteger level;
+
 @end

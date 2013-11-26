@@ -12,5 +12,6 @@
 @interface SpellViewController : UIViewController
 
 @property (nonatomic) NSUInteger level;
+@property (nonatomic) NSUInteger wordIndex;
 
 @end

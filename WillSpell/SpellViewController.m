@@ -21,7 +21,6 @@
 @property (strong, nonatomic) NSArray *imageList;
 @property (strong, nonatomic) NSArray *wordList;
 @property (strong, nonatomic) MysteryWord *mysteryWord;
-@property (nonatomic) NSUInteger wordIndex;
 
 @property (strong, nonatomic) GameData *gameData;
 @end

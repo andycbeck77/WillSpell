@@ -15,6 +15,7 @@
 @property (strong, nonatomic) SpellViewController *spellViewController;
 @property (nonatomic) NSUInteger level;
 @property (strong, nonatomic) GameData *gameData;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *levelSelect;
 @end
 
 @implementation SpellIntroViewController
@@ -29,9 +30,6 @@
 }
 
 - (SpellViewController *) spellViewController {
-    //if (!_spellViewController) {
-    //    _spellViewController = [[SpellViewController alloc] init];
-    //}
     return _spellViewController;
 }
 
@@ -40,12 +38,25 @@
 }
 
 - (IBAction)playGame:(UIButton *)sender {
+    [self.gameData loadGameData];
+    
+    NSString *level = @"-";
+    NSString *lastIndex = @"-";
+    
+    level = self.gameData.level;
+    lastIndex = self.gameData.wordIndex;
+
+    NSLog(@"level:%d lastIndex:%d",level.intValue,lastIndex.intValue);
+    
+    [self.levelSelect setSelectedSegmentIndex:self.gameData.level.intValue];
+    
     self.spellViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"spellviewcontroller"];
-    self.spellViewController.level = self.level;
+    self.spellViewController.level = self.gameData.level.intValue;
+    self.spellViewController.wordIndex = self.gameData.wordIndex.intValue;
     [self presentViewController:self.spellViewController animated:YES completion:nil];
     
-    NSString *def = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
-    NSLog(@"%@", def);
+    //NSString *def = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
+    //NSLog(@"%@", def);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,20 +72,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    [self.gameData loadGameData];
-    NSString *level = @"-";
-    NSString *lastIndex = @"-";
-    
-    if (!self.gameData.level) {
-        level = self.gameData.level;
-    }
-    if (!self.gameData.wordIndex) {
-        lastIndex = self.gameData.wordIndex;
-    }
-    NSLog(@"level:%d lastIndex:%d",level,lastIndex);
-
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,7 +85,10 @@
     self.level = sender.selectedSegmentIndex;
     if (self.spellViewController) {
         self.spellViewController.level = sender.selectedSegmentIndex;
-    } 
+        [self.gameData saveGameData:sender.selectedSegmentIndex forLastIndex:self.spellViewController.wordIndex];
+    } else {
+        [self.gameData saveGameData:sender.selectedSegmentIndex forLastIndex:0];
+    }
 }
 
 @end

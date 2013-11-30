@@ -176,6 +176,9 @@
             BOOL correctGuess = [self.mysteryWord makeGuess:button.titleLabel.text atIndex:index];
             if (correctGuess) {
                 [self resetWordLetters:self.mysteryWord.guessedWord];
+                if ([self.mysteryWord completedWord]) {
+                    [self.winnerDelegate winner];
+                }
             }
             
             //Move back button
@@ -201,6 +204,15 @@
 	button.center = CGPointMake(button.center.x + delta_x,
                                 button.center.y + delta_y);
 }
+@synthesize winnerDelegate = _winnerDelegate;
 
+- (void)setWinnerDelegate:(id<WinnerDelegate>)newDelegate
+{
+    _winnerDelegate = newDelegate;
+}
+
+- (id<WinnerDelegate>) winnerDelegate {
+    return _winnerDelegate;
+}
 
 @end

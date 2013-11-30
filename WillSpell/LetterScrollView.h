@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MysteryWord.h"
+#import "SpellViewController.h"
 
 @interface LetterScrollView : UIScrollView
 
@@ -18,5 +19,7 @@
 - (void) logRefresh;
 
 @property (strong, nonatomic) MysteryWord *mysteryWord;
+
+@property (weak) id <WinnerDelegate> winnerDelegate;
 
 @end

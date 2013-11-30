@@ -23,5 +23,6 @@
 
 - (void) hint:(NSUInteger) numberOfLetters;
 - (void) clearWord;
+- (BOOL) completedWord;
 
 @end

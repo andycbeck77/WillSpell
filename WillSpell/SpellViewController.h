@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "WordScrollView.h"
 
-@interface SpellViewController : UIViewController
+@protocol WinnerDelegate <NSObject>
+- (void) winner;
+@end
+
+@interface SpellViewController : UIViewController<WinnerDelegate>
 
 @property (nonatomic) NSUInteger level;
 @property (nonatomic) NSUInteger wordIndex;

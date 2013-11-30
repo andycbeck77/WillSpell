@@ -72,7 +72,7 @@ NSString *const DEFAULT_CHAR = @"-";
 - (void) hint:(NSUInteger) numberOfLetters {
     BOOL foundMatch = NO;
     while (numberOfLetters > 0) {
-        for (NSUInteger currentLetterIndex = _guessedWord.count-1; currentLetterIndex >= 0; currentLetterIndex--) {
+        for (NSInteger currentLetterIndex = _guessedWord.count-1; currentLetterIndex >= 0; currentLetterIndex--) {
             if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
                 _guessedWord[currentLetterIndex] = _actualWord[currentLetterIndex];
                 numberOfLetters--;
@@ -85,6 +85,18 @@ NSString *const DEFAULT_CHAR = @"-";
             return;
         }
     }
+}
+
+- (BOOL) completedWord {
+    BOOL foundMatch = YES;
+    for (NSUInteger currentLetterIndex = 0; currentLetterIndex < _guessedWord.count-1; currentLetterIndex++) {
+        if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
+            _guessedWord[currentLetterIndex] = _actualWord[currentLetterIndex];
+            foundMatch = NO;
+            break;
+        }
+    }
+    return foundMatch;
 }
 
 @end

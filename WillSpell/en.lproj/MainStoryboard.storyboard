@@ -164,35 +164,6 @@
     <resources>
         <image name="willspell_4.png" width="291" height="44"/>
     </resources>
-    <classes>
-        <class className="ImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageView.h"/>
-        </class>
-        <class className="LetterScrollView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterScrollView.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SpellIntroViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SpellIntroViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="levelSelect:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="playGame:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="levelSelect" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="SpellViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SpellViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="chooseNextWord:" candidateClass="UIButton"/>
-                <relationship kind="action" name="exitSpellViewController:" candidateClass="UIButton"/>
-                <relationship kind="action" name="giveMeAHint:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageView" candidateClass="ImageView"/>
-                <relationship kind="outlet" name="letterScrollView" candidateClass="LetterScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

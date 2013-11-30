@@ -12,6 +12,8 @@
 #import "MysteryWord.h"
 #import "GameData.h"
 
+NSString *const WIN_IMAGE = @"winner-win.jpg"; //@"fireworks_animated_black_background_large-1.gif";
+
 @interface SpellViewController () //<UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet ImageView *imageView;
@@ -57,6 +59,11 @@
     if (!_letterScrollView) {
         _letterScrollView = [[LetterScrollView alloc] init];
     }
+    
+    if (!_letterScrollView.winnerDelegate) {
+        _letterScrollView.winnerDelegate = self;
+    }
+    
     return _letterScrollView;
 }
 
@@ -85,9 +92,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    [self.imageView changeImage:self.imageList[self.wordIndex]];
-    
+	   
     // 320, 153
     self.letterScrollView.contentSize = CGSizeMake(1640.0, 640.0);
     
@@ -96,7 +101,7 @@
 }
 
 - (void) setupWord {
-    self.wordIndex=0;
+    [self.imageView changeImage:self.imageList[self.wordIndex]];
     [self refreshWord];
 }
 
@@ -141,6 +146,11 @@
 
 - (IBAction)exitSpellViewController:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) winner {
+    NSLog(@"winner!");
+    [self.imageView changeImage:WIN_IMAGE];
 }
 
 @end

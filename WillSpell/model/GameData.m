@@ -8,12 +8,14 @@
 
 #import "GameData.h"
 
+#include <stdlib.h> 
+
 #define GAME_DATA_KEY @"gameData"
 #define LEVEL_KEY @"level"
 #define LAST_INDEX_KEY @"lastIndex"
 
 @interface GameData()
-@property (nonatomic) BOOL isDataLoaded;
+
 @end
 
 @implementation GameData
@@ -44,6 +46,20 @@
     _wordIndex = wordIndex;
 }
 
+@synthesize randomizedIndices = _randomizedIndices;
+
+- (NSMutableArray *) randomizedIndices {
+    if (!_randomizedIndices) {
+        _randomizedIndices = [[NSMutableArray alloc] init];
+    }
+    
+    return _randomizedIndices;
+}
+
+- (void) setRandomizedIndices:(NSArray *)randomizedIndices {
+    _randomizedIndices = randomizedIndices;
+}
+
 -(NSDictionary *) loadGameData {
     self.isDataLoaded = YES;
     
@@ -68,6 +84,46 @@
     [prefs setObject:theLevel forKey:LEVEL_KEY];
     [prefs setObject:theLastIndex forKey:LAST_INDEX_KEY];
     [prefs synchronize];
+}
+
+-(void) randomizeIndices:(NSInteger) startingNumber forSize:(NSUInteger) sizeList {
+    int ar[sizeList];
+    int i;
+    int d;
+    int tmp;
+    int randomNumber;
+    
+    int indexOfStarter = 0;
+    
+    for (i=0; i < sizeList; i++) {
+        ar[i]=i;
+    }
+    
+    for (i=0; i < sizeList; i++) {
+        randomNumber = arc4random() % (sizeList-i);
+        d = i + randomNumber;
+        tmp = ar[i];
+        ar[i] = ar[d];
+        ar[d] = tmp;
+        
+        if (ar[i]==startingNumber) {
+            indexOfStarter = i;
+        }
+    }
+    
+    if (startingNumber >= 0) {        
+        ar[indexOfStarter]=ar[0];
+        ar[0]=startingNumber;
+    }
+    
+    for (i=0; i < sizeList; i++) {
+        [self.randomizedIndices addObject:[NSNumber numberWithInt:ar[i]]];
+        NSLog(@"%d",ar[i]);
+        
+    }
+    
+    self.isRandomArrayLoaded = YES;
+
 }
 
 @end

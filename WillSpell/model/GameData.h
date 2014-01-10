@@ -12,8 +12,11 @@
 
 @property (nonatomic) NSNumber *level;
 @property (nonatomic) NSNumber *wordIndex;
+@property (strong, nonatomic) NSMutableArray *randomizedIndices;
+@property (nonatomic) BOOL isDataLoaded;
+@property (nonatomic) BOOL isRandomArrayLoaded;
 
 - (void) loadGameData;
 - (void) saveGameData:(NSUInteger) level forLastIndex:(NSUInteger) lastIndex;
-
+- (void) randomizeIndices:(NSInteger) startingNumber forSize:(NSUInteger) sizeList;
 @end

@@ -10,7 +10,7 @@
 #import "MysteryWord.h"
 #import "SpellViewController.h"
 
-@interface LetterScrollView : UIScrollView
+@interface LetterScrollView : UIView
 
 - (void) setupLetters:(NSArray *) letterList;
 - (void) refreshWord:(NSMutableArray *) currentWord withMysteryWord:(MysteryWord *) mysteryWord;

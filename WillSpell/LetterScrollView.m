@@ -22,7 +22,7 @@
 @implementation LetterScrollView
 
 #define WORD_WIDTH 35
-#define WORD_HEIGHT 25
+#define WORD_HEIGHT 35
 #define Y_START 5
 
 #define WORD_Y_START 5
@@ -109,16 +109,32 @@
 - (void) resetWordLetters:(NSMutableArray *) currentWord {
     for (NSUInteger index = 0; index < self.wordButtons.count; index++) {
         UIButton *obj = self.wordButtons[index];
+        
+        UIImage *aImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentWord[index]]];
+        if (aImage) {
+            [obj setImage:aImage forState:UIControlStateNormal];
+        }
+        
         [obj setTitle:currentWord[index] forState:UIControlStateNormal];
     }
 }
 
 - (UIButton *) createButtonForWord:(NSString *)title atX:(NSUInteger)x{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
     [button addTarget:self
                action:@selector(wordLetterSelected:)
      forControlEvents:UIControlEventTouchDown];
+    
+    UIImage *aImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", title]];
+    if (aImage) {
+        [button setImage:aImage forState:UIControlStateNormal];
+    }
+    
     [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
     button.frame = CGRectMake(x,WORD_Y_START,WORD_WIDTH, WORD_HEIGHT);
     [self.wordButtons addObject:button];
     
@@ -131,11 +147,19 @@
 }
 
 - (UIButton *) createButtonForLetters:(NSString *)title atX:(NSUInteger)x atY:(NSUInteger)y {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self
                action:@selector(letterSelected:)
      forControlEvents:UIControlEventTouchDown];
+    
+    UIImage *aImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", title]];
+    if (aImage) {
+        [button setImage:aImage forState:UIControlStateNormal];
+    }
+    
     [button setTitle:title forState:UIControlStateNormal];
+    
     button.frame = CGRectMake(x,y,WORD_WIDTH, WORD_HEIGHT);
     
     // add drag listener
@@ -187,6 +211,12 @@
             button.center = CGPointMake(origin.x, origin.y);
         }
     }
+    
+    //Move back button
+    NSValue *objLocation = [self.letterButtonLocations objectAtIndex:[self.letterButtons indexOfObject:button]];
+    CGPoint origin = [objLocation CGPointValue];
+    button.center = CGPointMake(origin.x, origin.y);
+
 }
 
 - (void)wasDragged:(UIButton *)button withEvent:(UIEvent *)event

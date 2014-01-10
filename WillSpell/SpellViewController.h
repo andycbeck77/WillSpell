@@ -17,5 +17,6 @@
 
 @property (nonatomic) NSUInteger level;
 @property (nonatomic) NSUInteger wordIndex;
+@property (nonatomic) NSUInteger randomIndex;
 
 @end

@@ -89,6 +89,8 @@
     } else {
         [self.gameData saveGameData:sender.selectedSegmentIndex forLastIndex:0];
     }
+    
+    NSLog(@"Starter Index: %d", self.level);
 }
 
 @end

@@ -12,7 +12,9 @@
 #import "MysteryWord.h"
 #import "GameData.h"
 
-NSString *const WIN_IMAGE = @"trophy_large.png"; //@"fireworks_animated_black_background_large-1.gif";
+NSString *const WIN_IMAGE = @"my_correct_check_2.png"; //@"fireworks.png"; //@"trophy_large.png"; //@"fireworks_animated_black_background_large-1.gif";
+
+NSString *const WRONG_IMAGE = @"wrong4.png";
 
 @interface SpellViewController () //<UIScrollViewDelegate>
 
@@ -37,11 +39,11 @@ NSString *const WIN_IMAGE = @"trophy_large.png"; //@"fireworks_animated_black_ba
 }
 
 - (NSArray *) imageList {
-    return @[@"green_apple.png", @"bear.png",@"bumble_bee.png",@"camera-photo-5.png", @"cupcake_iced_with_cherry.png",@"dog.png",@"dragon.png",@"egg_sunny.png", @"elephant.png", @"flag-us.png", @"ghost.png", @"giraffe.png", @"heart-3.png", @"hippo.png", @"ice_cream_4_colors_large.png", @"jellyfish.png", @"ladybug.png", @"light_bulb.png", @"lion.png", @"king.png", @"kite.png", @"kiwi.png", @"mouse.png", @"plant-mushroom.png", @"nail.png", @"note.png", @"octopus.png", @"owl.png", @"peanut.png", @"queen_large.png", @"rabbit.png", @"rosa.png", @"road-sign-us-stop.png", @"shield-2.png", @"strawberry_with_light_shadow.png", @"train2_large.png", @"umbrella-black.png.png", @"volcano", @"whale.png", @"xylophone.png", @"zebra.png"];
+    return @[@"green_apple.png", @"bear.png",@"bumble_bee.png",@"camera-photo-5.png", @"cupcake_iced_with_cherry.png",@"dog.png",@"dragon.png",@"egg_sunny.png", @"elephant.png", @"flag-us.png", @"rosa.png", @"ghost.png", @"giraffe.png", @"heart-3.png", @"hippo.png", @"ice_cream_2.png", @"jellyfish.png", @"ladybug.png", @"light_bulb.png", @"lion.png", @"key2.png", @"kite.png", @"mouse.png", @"plant-mushroom.png", @"note.png", @"peanut2.png", @"penguin.png", @"octopus.png", @"owl.png", @"queen_large.png", @"rabbit.png", @"road-sign-us-stop.png", @"shield-2.png", @"train2_large.png", @"umbrella-black.png.png", @"volcano", @"whale.png", @"xylophone.png", @"zebra.png"];
 }
 
 - (NSArray *) wordList {
-    return @[@"APPLE",@"BEAR",@"BEE",@"CAMERA",@"CUPCAKE",@"DOG",@"DRAGON",@"EGG",@"ELEPHANT",@"FLAG",@"GHOST",@"GIRAFFE",@"HEART",@"HIPPO",@"ICE CREAM",@"JELLYFISH",@"LADYBUG",@"LIGHT",@"LION",@"KING",@"KITE",@"KIWI",@"MOUSE",@"MUSHROOM",@"NAIL",@"NOTE",@"OCTOPUS",@"OWL",@"PEANUT",@"QUEEN",@"RABBIT",@"ROSE",@"STOP SIGN",@"SHIELD",@"STRAWBERRY",@"TRAIN",@"UMBERALLA",@"VOLCANO",@"WHALE",@"XYLOPHONE",@"ZEBRA"];
+    return @[@"APPLE",@"BEAR",@"BEE",@"CAMERA",@"CUPCAKE",@"DOG",@"DRAGON",@"EGG",@"ELEPHANT",@"FLAG",@"FLOWER",@"GHOST",@"GIRAFFE",@"HEART",@"HIPPO",@"ICE CREAM",@"JELLYFISH",@"LADYBUG",@"LIGHT",@"LION",@"KEY",@"KITE",@"MOUSE",@"MUSHROOM",@"MUSIC",@"NUT",@"PENGUIN",@"OCTOPUS",@"OWL",@"QUEEN",@"RABBIT",@"STOP SIGN",@"SHIELD",@"TRAIN",@"UMBRELLA",@"VOLCANO",@"WHALE",@"XYLOPHONE",@"ZEBRA"];
 }
 
 //- (NSArray *) imageListNewOld {
@@ -138,7 +140,7 @@ NSString *const WIN_IMAGE = @"trophy_large.png"; //@"fireworks_animated_black_ba
         [self.letterScrollView resetWordLetters:[self.mysteryWord guessedWord]];
     }
     
-    [self.gameData saveGameData:self.level forLastIndex:self.wordIndex];
+    [self.gameData saveGameData:self.level forLastIndex:self.wordIndex forNumberCorrect:self.gameData.numberCorrect.integerValue forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
 }
 - (IBAction)giveMeAHint:(UIButton *)sender {
     if (self.letterScrollView) {
@@ -182,6 +184,13 @@ NSString *const WIN_IMAGE = @"trophy_large.png"; //@"fireworks_animated_black_ba
     [self.imageView changeImage:self.imageList[intnum]];
      
 }
+- (IBAction)showScore:(id)sender {
+    NSLog([NSString stringWithFormat:@"Correct: %d", self.gameData.numberCorrect.intValue]);
+    NSLog([NSString stringWithFormat:@"Wrong: %d", self.gameData.numberWrong.intValue]);
+}
+- (IBAction)resetScore:(id)sender {
+    [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:0 forNumberWrong:0 forNumberSkipped:0];
+}
 
 - (IBAction)exitSpellViewController:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -190,6 +199,25 @@ NSString *const WIN_IMAGE = @"trophy_large.png"; //@"fireworks_animated_black_ba
 - (void) winner {
     NSLog(@"winner!");
     [self.imageView changeImage:WIN_IMAGE];
+    
+    [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:self.gameData.numberCorrect.integerValue+1 forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
+
+}
+
+- (void) wrong {
+    NSLog(@"wrong!");
+    [self.imageView changeImage:WRONG_IMAGE];
+    
+    dispatch_queue_t wrongQ = dispatch_queue_create("temporary  wrong image", NULL);
+    dispatch_async(wrongQ, ^{
+        [NSThread sleepForTimeInterval:2.0f];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.imageView changeImage:self.imageList[self.wordIndex]];
+        });
+    });
+    
+    [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:self.gameData.numberCorrect.integerValue forNumberWrong:self.gameData.numberWrong.integerValue+1 forNumberSkipped:self.gameData.numberSkipped.integerValue];
+
 }
 
 @end

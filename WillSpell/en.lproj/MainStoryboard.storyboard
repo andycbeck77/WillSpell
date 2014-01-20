@@ -43,8 +43,8 @@
                                     <action selector="playGame:" destination="tfn-BY-BzX" eventType="touchUpInside" id="cnc-Re-hlV"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="center" misplaced="YES" image="will_spell_small_mod1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="sKO-bW-Rjx">
-                                <rect key="frame" x="6" y="107" width="305" height="108"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" misplaced="YES" image="will_spell_stacked_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="sKO-bW-Rjx">
+                                <rect key="frame" x="9" y="107" width="305" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="108" id="evR-N9-5aP"/>
                                 </constraints>
@@ -128,6 +128,26 @@
                                     <action selector="exitSpellViewController:" destination="jYU-uM-svy" eventType="touchUpInside" id="eYP-nf-FzF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-HK-iza">
+                                <rect key="frame" x="6" y="207" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Score">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showScore:" destination="jYU-uM-svy" eventType="touchUpInside" id="u2d-4T-A6G"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXi-p1-SoA">
+                                <rect key="frame" x="272" y="207" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetScore:" destination="jYU-uM-svy" eventType="touchUpInside" id="C7P-NE-OXU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -159,7 +179,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="will_spell_small_mod1.jpg" width="301" height="43"/>
+        <image name="will_spell_stacked_2.png" width="300" height="109"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -15,8 +15,12 @@
 @property (strong, nonatomic) NSMutableArray *randomizedIndices;
 @property (nonatomic) BOOL isDataLoaded;
 @property (nonatomic) BOOL isRandomArrayLoaded;
+@property (nonatomic) NSNumber *numberCorrect;
+@property (nonatomic) NSNumber *numberWrong;
+@property (nonatomic) NSNumber *numberSkipped;
+
 
 - (void) loadGameData;
-- (void) saveGameData:(NSUInteger) level forLastIndex:(NSUInteger) lastIndex;
+- (void) saveGameData:(NSUInteger) level forLastIndex:(NSUInteger) lastIndex forNumberCorrect:(NSInteger) numberCorrect forNumberWrong:(NSInteger) numberWrong forNumberSkipped:(NSInteger) numberSkipped;
 - (void) randomizeIndices:(NSInteger) startingNumber forSize:(NSUInteger) sizeList;
 @end

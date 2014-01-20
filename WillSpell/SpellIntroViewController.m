@@ -85,9 +85,9 @@
     self.level = sender.selectedSegmentIndex;
     if (self.spellViewController) {
         self.spellViewController.level = sender.selectedSegmentIndex;
-        [self.gameData saveGameData:sender.selectedSegmentIndex forLastIndex:self.spellViewController.wordIndex];
+        [self.gameData saveGameData:sender.selectedSegmentIndex forLastIndex:self.spellViewController.wordIndex forNumberCorrect:self.gameData.numberCorrect.integerValue forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
     } else {
-        [self.gameData saveGameData:sender.selectedSegmentIndex forLastIndex:0];
+        [self.gameData saveGameData:sender.selectedSegmentIndex forLastIndex:0 forNumberCorrect:self.gameData.numberCorrect.integerValue forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
     }
     
     NSLog(@"Starter Index: %d", self.level);

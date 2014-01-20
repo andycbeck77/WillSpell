@@ -11,6 +11,7 @@
 
 @protocol WinnerDelegate <NSObject>
 - (void) winner;
+- (void) wrong;
 @end
 
 @interface SpellViewController : UIViewController<WinnerDelegate>

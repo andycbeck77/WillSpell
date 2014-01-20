@@ -203,6 +203,8 @@
                 if ([self.mysteryWord completedWord]) {
                     [self.winnerDelegate winner];
                 }
+            } else {
+                [self.winnerDelegate wrong];
             }
             
             //Move back button

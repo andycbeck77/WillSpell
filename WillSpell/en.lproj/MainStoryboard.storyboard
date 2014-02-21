@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tfn-BY-BzX">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -82,8 +82,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0H-6L-ixe" customClass="ImageView">
-                                <rect key="frame" x="66" y="15" width="190" height="227"/>
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a0H-6L-ixe" customClass="ImageView">
+                                <rect key="frame" x="66" y="15" width="190" height="192"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
@@ -128,9 +128,10 @@
                                     <action selector="exitSpellViewController:" destination="jYU-uM-svy" eventType="touchUpInside" id="eYP-nf-FzF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-HK-iza">
-                                <rect key="frame" x="6" y="207" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-HK-iza">
+                                <rect key="frame" x="6" y="215" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Score">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -138,9 +139,10 @@
                                     <action selector="showScore:" destination="jYU-uM-svy" eventType="touchUpInside" id="u2d-4T-A6G"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXi-p1-SoA">
-                                <rect key="frame" x="272" y="207" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXi-p1-SoA">
+                                <rect key="frame" x="264" y="215" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Reset">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -153,12 +155,15 @@
                         <constraints>
                             <constraint firstItem="a0H-6L-ixe" firstAttribute="leading" secondItem="Hrm-kc-Zpt" secondAttribute="leading" constant="66" id="1hc-sN-Kqk"/>
                             <constraint firstItem="MGW-o1-8Al" firstAttribute="leading" secondItem="Hrm-kc-Zpt" secondAttribute="leading" id="354-ya-5Vi"/>
+                            <constraint firstItem="9EI-jm-lzG" firstAttribute="top" secondItem="1pd-HK-iza" secondAttribute="bottom" constant="5" id="3FW-dH-XLh"/>
                             <constraint firstAttribute="trailing" secondItem="8Dg-92-MlS" secondAttribute="trailing" constant="2" id="3fD-wV-oWR"/>
                             <constraint firstItem="9EI-jm-lzG" firstAttribute="leading" secondItem="Hrm-kc-Zpt" secondAttribute="leading" id="BLv-IT-YZQ"/>
                             <constraint firstAttribute="trailing" secondItem="9EI-jm-lzG" secondAttribute="trailing" constant="-320" id="GA2-dc-0eC"/>
                             <constraint firstItem="8Dg-92-MlS" firstAttribute="top" secondItem="Hrm-kc-Zpt" secondAttribute="top" constant="123" id="GQF-qO-uaW"/>
                             <constraint firstAttribute="bottom" secondItem="9EI-jm-lzG" secondAttribute="bottom" constant="-90" id="Kr4-jz-C27"/>
-                            <constraint firstItem="9EI-jm-lzG" firstAttribute="top" secondItem="a0H-6L-ixe" secondAttribute="bottom" constant="8" symbolic="YES" id="P03-6Y-UqF"/>
+                            <constraint firstItem="9EI-jm-lzG" firstAttribute="top" secondItem="nXi-p1-SoA" secondAttribute="bottom" constant="8" symbolic="YES" id="Lo5-5l-nhH"/>
+                            <constraint firstItem="nXi-p1-SoA" firstAttribute="centerY" secondItem="1pd-HK-iza" secondAttribute="centerY" id="MTO-8C-cys"/>
+                            <constraint firstItem="1pd-HK-iza" firstAttribute="top" secondItem="a0H-6L-ixe" secondAttribute="bottom" constant="8" symbolic="YES" id="PFw-2W-Lzi"/>
                             <constraint firstItem="a0H-6L-ixe" firstAttribute="top" secondItem="Hrm-kc-Zpt" secondAttribute="top" constant="15" id="dUx-1w-ceN"/>
                             <constraint firstItem="MGW-o1-8Al" firstAttribute="top" secondItem="Hrm-kc-Zpt" secondAttribute="top" constant="5" id="eVV-SH-AYd"/>
                             <constraint firstAttribute="trailing" secondItem="a0H-6L-ixe" secondAttribute="trailing" constant="64" id="jzt-iL-VCl"/>
@@ -171,6 +176,7 @@
                     <connections>
                         <outlet property="imageView" destination="a0H-6L-ixe" id="xUh-hU-1Cs"/>
                         <outlet property="letterScrollView" destination="9EI-jm-lzG" id="Ydh-eR-Ddn"/>
+                        <outlet property="scoreText" destination="1pd-HK-iza" id="NeU-zA-Zrb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFp-QS-fgE" userLabel="First Responder" sceneMemberID="firstResponder"/>

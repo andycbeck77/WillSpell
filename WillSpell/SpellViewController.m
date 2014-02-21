@@ -12,6 +12,8 @@
 #import "MysteryWord.h"
 #import "GameData.h"
 
+#import <AVFoundation/AVAudioPlayer.h>
+
 NSString *const WIN_IMAGE = @"my_correct_check_2.png"; //@"fireworks.png"; //@"trophy_large.png"; //@"fireworks_animated_black_background_large-1.gif";
 
 NSString *const WRONG_IMAGE = @"wrong4.png";
@@ -26,7 +28,10 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 @property (strong, nonatomic) NSArray *wordList;
 @property (strong, nonatomic) MysteryWord *mysteryWord;
 
+@property (weak, nonatomic) IBOutlet UIButton *scoreText;
 @property (strong, nonatomic) GameData *gameData;
+
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @end
 
 @implementation SpellViewController
@@ -116,6 +121,8 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     
     [self setupWord];
     [self.letterScrollView setupLetters:self.letterList];
+    
+    [self updateScore];
 }
 
 - (void) setupWord {
@@ -185,11 +192,21 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
      
 }
 - (IBAction)showScore:(id)sender {
-    NSLog([NSString stringWithFormat:@"Correct: %d", self.gameData.numberCorrect.intValue]);
-    NSLog([NSString stringWithFormat:@"Wrong: %d", self.gameData.numberWrong.intValue]);
+    [self updateScore];
+    //NSLog([NSString stringWithFormat:@"Correct: %d", self.gameData.numberCorrect.intValue]);
+    //NSLog([NSString stringWithFormat:@"Wrong: %d", self.gameData.numberWrong.intValue]);
 }
+
+- (void) updateScore {
+    [self.scoreText setTitle:[NSString stringWithFormat:@"Correct: %d Wrong: %d", self.gameData.numberCorrect.intValue, self.gameData.numberWrong.intValue] forState:UIControlStateNormal];
+    self.scoreText.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+}
+
 - (IBAction)resetScore:(id)sender {
     [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:0 forNumberWrong:0 forNumberSkipped:0];
+    
+    [self updateScore];
 }
 
 - (IBAction)exitSpellViewController:(UIButton *)sender {
@@ -201,7 +218,19 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     [self.imageView changeImage:WIN_IMAGE];
     
     [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:self.gameData.numberCorrect.integerValue+1 forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
-
+    
+    [self updateScore];
+    
+    NSURL* musicFile = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Willben2_v3.m4a",
+                                               [[NSBundle mainBundle] resourcePath]]];
+    NSError *error = nil;
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:&error];
+    
+    if (!error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    
+    [self.audioPlayer play];
 }
 
 - (void) wrong {
@@ -217,7 +246,8 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     });
     
     [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:self.gameData.numberCorrect.integerValue forNumberWrong:self.gameData.numberWrong.integerValue+1 forNumberSkipped:self.gameData.numberSkipped.integerValue];
-
+    
+    [self updateScore];
 }
 
 @end

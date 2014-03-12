@@ -101,6 +101,9 @@
 		69D519F9188DBDDA00F1E4BF /* penguin.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D519F8188DBDDA00F1E4BF /* penguin.png */; };
 		69D519FB188DBEB000F1E4BF /* key2.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D519FA188DBEB000F1E4BF /* key2.png */; };
 		69D519FD188DBF7200F1E4BF /* ice_cream_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D519FC188DBF7200F1E4BF /* ice_cream_2.png */; };
+		69D5FBD518C801FB0077A693 /* IPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D5FBD418C801FB0077A693 /* IPad.storyboard */; };
+		69D5FBD718C8084A0077A693 /* will_spell_two_lines_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69D5FBD618C8084A0077A693 /* will_spell_two_lines_ipad.jpg */; };
+		69D5FBDA18C80D1A0077A693 /* BigLetterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5FBD918C80D1A0077A693 /* BigLetterScrollView.m */; };
 		69E8551517F51FD1006A85C6 /* LetterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E8551417F51FD1006A85C6 /* LetterScrollView.m */; };
 /* End PBXBuildFile section */
 
@@ -209,6 +212,10 @@
 		69D519F8188DBDDA00F1E4BF /* penguin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = penguin.png; sourceTree = "<group>"; };
 		69D519FA188DBEB000F1E4BF /* key2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key2.png; sourceTree = "<group>"; };
 		69D519FC188DBF7200F1E4BF /* ice_cream_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream_2.png; sourceTree = "<group>"; };
+		69D5FBD418C801FB0077A693 /* IPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IPad.storyboard; sourceTree = "<group>"; };
+		69D5FBD618C8084A0077A693 /* will_spell_two_lines_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = will_spell_two_lines_ipad.jpg; sourceTree = "<group>"; };
+		69D5FBD818C80D1A0077A693 /* BigLetterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigLetterScrollView.h; sourceTree = "<group>"; };
+		69D5FBD918C80D1A0077A693 /* BigLetterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigLetterScrollView.m; sourceTree = "<group>"; };
 		69E8551317F51FD1006A85C6 /* LetterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterScrollView.h; sourceTree = "<group>"; };
 		69E8551417F51FD1006A85C6 /* LetterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,12 +281,15 @@
 			isa = PBXGroup;
 			children = (
 				69BB53AE17ED322C000CA484 /* MainStoryboard.storyboard */,
+				69D5FBD418C801FB0077A693 /* IPad.storyboard */,
 				695277001835CB5900276E5F /* SpellIntroViewController.h */,
 				695277011835CB5900276E5F /* SpellIntroViewController.m */,
 				69BB53BC17ED36EB000CA484 /* SpellViewController.h */,
 				69BB53BD17ED36EB000CA484 /* SpellViewController.m */,
 				69E8551317F51FD1006A85C6 /* LetterScrollView.h */,
 				69E8551417F51FD1006A85C6 /* LetterScrollView.m */,
+				69D5FBD818C80D1A0077A693 /* BigLetterScrollView.h */,
+				69D5FBD918C80D1A0077A693 /* BigLetterScrollView.m */,
 				69BB53C517ED381A000CA484 /* ImageView.h */,
 				69BB53C617ED381A000CA484 /* ImageView.m */,
 				6985935218288AF7000E464E /* model */,
@@ -384,6 +394,7 @@
 				698908D61877AF8400BFC0DF /* Y.jpg */,
 				698908D71877AF8400BFC0DF /* Z.jpg */,
 				69013A6E1884B65700BE3F44 /* will_spell_stacked_2.png */,
+				69D5FBD618C8084A0077A693 /* will_spell_two_lines_ipad.jpg */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -442,6 +453,7 @@
 				694DB57218B2E7DE008E0FAF /* Willben2_v3.m4a in Resources */,
 				698908E91877AF8400BFC0DF /* V.jpg in Resources */,
 				693F9268187F86FC002723B8 /* shield-2.png in Resources */,
+				69D5FBD518C801FB0077A693 /* IPad.storyboard in Resources */,
 				696480A018B6FC0800B0E5F7 /* WillSpell_Launch2_568h_2x.png in Resources */,
 				693F9260187F86FC002723B8 /* lion.png in Resources */,
 				698908EA1877AF8400BFC0DF /* W.jpg in Resources */,
@@ -449,6 +461,7 @@
 				693F9284187F87DB002723B8 /* xylophone.png in Resources */,
 				693F9262187F86FC002723B8 /* note.png in Resources */,
 				693F927C187F8788002723B8 /* queen_large.png in Resources */,
+				69D5FBD718C8084A0077A693 /* will_spell_two_lines_ipad.jpg in Resources */,
 				69BB53A117ED322C000CA484 /* InfoPlist.strings in Resources */,
 				698908DE1877AF8400BFC0DF /* K.jpg in Resources */,
 				693F924E187F8674002723B8 /* hippo.png in Resources */,
@@ -537,6 +550,7 @@
 				69BB53C717ED381A000CA484 /* ImageView.m in Sources */,
 				69E8551517F51FD1006A85C6 /* LetterScrollView.m in Sources */,
 				6985935518288B30000E464E /* MysteryWord.m in Sources */,
+				69D5FBDA18C80D1A0077A693 /* BigLetterScrollView.m in Sources */,
 				69C6ACAB1829E0060096EA0B /* LetterList.m in Sources */,
 				695277021835CB5900276E5F /* SpellIntroViewController.m in Sources */,
 				690C57161840346400F8106F /* GameData.m in Sources */,
@@ -627,7 +641,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WillSpell/WillSpell-Prefix.pch";
 				INFOPLIST_FILE = "WillSpell/WillSpell-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -638,7 +654,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WillSpell/WillSpell-Prefix.pch";
 				INFOPLIST_FILE = "WillSpell/WillSpell-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

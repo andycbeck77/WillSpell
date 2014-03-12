@@ -17,16 +17,28 @@
 @property (strong, nonatomic) NSMutableArray *letterButtons;
 
 @property (strong, nonatomic) NSMutableArray *letterButtonLocations;
+
 @end
 
 @implementation LetterScrollView
 
-#define WORD_WIDTH 35
-#define WORD_HEIGHT 35
-#define Y_START 5
+#define SMALL_WORD_WIDTH 35 // orig 35
+#define SMALL_WORD_HEIGHT 35 // orig 35
 
-#define WORD_Y_START 5
-#define LETTER_Y_START  75
+#define WORD_WIDTH 43 // orig 35
+#define WORD_HEIGHT 43 // orig 35
+
+#define MAX_WORD_FIT 7
+
+#define Y_START 2
+
+#define WORD_Y_START 2
+
+#define LETTER_WIDTH 43 // orig 35
+#define LETTER_HEIGHT 43 // orig 35
+
+#define LETTER_Y_START  55 // orig 75
+#define LETTERS_PER_ROW 7
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -58,14 +70,52 @@
     return _letterButtonLocations;
 }
 
+- (NSUInteger) letterHeight {
+    return LETTER_HEIGHT;
+}
+
+- (NSUInteger) letterWidth {
+    return LETTER_WIDTH;
+}
+
+- (NSUInteger) wordHeight {
+    if (self.theWord && self.theWord.count > MAX_WORD_FIT) {
+        return SMALL_WORD_HEIGHT;
+    }
+    
+    return WORD_HEIGHT;
+}
+
+- (NSUInteger) wordWidth {
+    if (self.theWord && self.theWord.count > MAX_WORD_FIT) {
+        return SMALL_WORD_WIDTH;
+    }
+    
+    return WORD_WIDTH;
+}
+
+- (NSUInteger) lettersPerRow {
+    return LETTERS_PER_ROW;
+}
+
+- (NSUInteger) wordStart {
+    return WORD_Y_START;
+}
+
+- (NSUInteger) letterStart {
+    return LETTER_Y_START;
+}
+
 - (void) refreshWord:(NSMutableArray *) currentWord withMysteryWord:(MysteryWord *) mysteryWord {
     [self clearWordButtons];
     self.wordButtons = nil;
+    self.theWord = currentWord;
+    
     for (NSUInteger currentLetterIndex = 0; currentLetterIndex < currentWord.count; currentLetterIndex++) {
         
         NSString *currentLetter = currentWord[currentLetterIndex];
         
-        NSUInteger x = 5 + (WORD_WIDTH * currentLetterIndex);
+        NSUInteger x = 5 + (self.wordWidth * currentLetterIndex);
         [self addSubview:[self createButtonForWord:currentLetter atX:x]];
     }
 }
@@ -81,21 +131,21 @@
     if (self) {
         
         NSUInteger x = 0;
-        NSUInteger y = LETTER_Y_START;
+        NSUInteger y = self.letterStart;
         NSUInteger xcounter = 0;
         NSUInteger ycounter = 1;
         for (NSUInteger currentLetterIndex = 0; currentLetterIndex < letterList.count; currentLetterIndex++) {
             
             NSString *currentLetter = letterList[currentLetterIndex];
             
-            // 8 letters per row then new row
-            if (xcounter < 9) {
-                x = 5 + (WORD_WIDTH * xcounter);
+            // letters per row then new row
+            if (xcounter < self.lettersPerRow) {
+                x = 5 + (self.letterWidth * xcounter);
                 xcounter++;
             } else {
                 xcounter = 0;
-                x = 5 + (WORD_WIDTH * xcounter);
-                y = LETTER_Y_START + (WORD_HEIGHT * ycounter) + 5;
+                x = 5 + (self.letterWidth * xcounter);
+                y = self.letterStart + (self.letterHeight * ycounter) + 5;
                 xcounter++;
                 ycounter++;
             }
@@ -107,6 +157,7 @@
 
 
 - (void) resetWordLetters:(NSMutableArray *) currentWord {
+    self.theWord = currentWord;
     for (NSUInteger index = 0; index < self.wordButtons.count; index++) {
         UIButton *obj = self.wordButtons[index];
         
@@ -135,7 +186,7 @@
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    button.frame = CGRectMake(x,WORD_Y_START,WORD_WIDTH, WORD_HEIGHT);
+    button.frame = CGRectMake(x,self.wordStart,self.wordWidth, self.wordHeight);
     [self.wordButtons addObject:button];
     
     return button;
@@ -160,7 +211,7 @@
     
     [button setTitle:title forState:UIControlStateNormal];
     
-    button.frame = CGRectMake(x,y,WORD_WIDTH, WORD_HEIGHT);
+    button.frame = CGRectMake(x,y,self.letterWidth, self.letterHeight);
     
     // add drag listener
 	[button addTarget:self action:@selector(wasDragged:withEvent:)
@@ -194,8 +245,8 @@
         CGPoint wordButtonCenter = obj.center;
         CGPoint letterButtonCenter = button.center;
         
-        if (fabsf(wordButtonCenter.x-letterButtonCenter.x)<WORD_WIDTH-10
-            && fabsf(wordButtonCenter.y-letterButtonCenter.y)<WORD_HEIGHT-5) {
+        if (fabsf(wordButtonCenter.x-letterButtonCenter.x)<self.wordWidth-10
+            && fabsf(wordButtonCenter.y-letterButtonCenter.y)<self.wordHeight-5) {
             
             BOOL correctGuess = [self.mysteryWord makeGuess:button.titleLabel.text atIndex:index];
             if (correctGuess) {

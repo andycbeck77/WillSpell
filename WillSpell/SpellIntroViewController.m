@@ -38,6 +38,15 @@
 }
 
 - (IBAction)playGame:(UIButton *)sender {
+    [self playTheGame:NO];
+}
+
+- (IBAction)playIpadGame:(UIButton *)sender {
+    [self playTheGame:YES];
+    
+}
+
+- (void) playTheGame:(BOOL) goBig {
     [self.gameData loadGameData];
     
     NSString *level = @"-";
@@ -45,12 +54,13 @@
     
     level = self.gameData.level;
     lastIndex = self.gameData.wordIndex;
-
+    
     NSLog(@"level:%d lastIndex:%d",level.intValue,lastIndex.intValue);
     
     [self.levelSelect setSelectedSegmentIndex:self.gameData.level.intValue];
     
     self.spellViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"spellviewcontroller"];
+    self.spellViewController.playBig = goBig;
     self.spellViewController.level = self.gameData.level.intValue;
     self.spellViewController.wordIndex = self.gameData.wordIndex.intValue;
     [self presentViewController:self.spellViewController animated:YES completion:nil];

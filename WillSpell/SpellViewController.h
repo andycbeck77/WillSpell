@@ -20,4 +20,5 @@
 @property (nonatomic) NSUInteger wordIndex;
 @property (nonatomic) NSUInteger randomIndex;
 
+@property (nonatomic) BOOL playBig;
 @end

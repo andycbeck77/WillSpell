@@ -11,6 +11,7 @@
 #import "LetterScrollView.h"
 #import "MysteryWord.h"
 #import "GameData.h"
+#import "BigLetterScrollView.h"
 
 #import <AVFoundation/AVAudioPlayer.h>
 
@@ -20,6 +21,8 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
 @interface SpellViewController () //<UIScrollViewDelegate>
 
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewCollection;
+@property (strong, nonatomic) IBOutletCollection(LetterScrollView) NSArray *letterScrollViewCollection;
 @property (weak, nonatomic) IBOutlet ImageView *imageView;
 @property (weak, nonatomic) IBOutlet LetterScrollView *letterScrollView;
 
@@ -29,6 +32,7 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 @property (strong, nonatomic) MysteryWord *mysteryWord;
 
 @property (weak, nonatomic) IBOutlet UIButton *scoreText;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *scoreTextCollection;
 @property (strong, nonatomic) GameData *gameData;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
@@ -38,6 +42,11 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
 @synthesize imageView = _imageView;
 @synthesize letterScrollView = _letterScrollView;
+
+@synthesize imageViewCollection = _imageViewCollection;
+@synthesize letterScrollViewCollection = _letterScrollViewCollection;
+
+@synthesize scoreTextCollection = _scoreTextCollection;
 
 - (NSArray *)letterList {
     return @[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
@@ -105,6 +114,87 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     [imageView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:imageView action:@selector(pinch:)]];
 }
 
+- (NSArray *) letterScrollViewCollection {
+    if (!_letterScrollViewCollection) {
+        _letterScrollViewCollection = [[NSArray alloc] initWithObjects:[[BigLetterScrollView alloc] init], [[LetterScrollView alloc] init], nil];
+    }
+
+    for (LetterScrollView *lsv in _letterScrollViewCollection) {
+        if (!lsv.winnerDelegate) {
+            lsv.winnerDelegate = self;
+        }
+    }
+    
+    return _letterScrollViewCollection;
+}
+
+- (void) setLetterScrollViewCollection:(NSArray *)letterScrollViewCollection {
+    _letterScrollViewCollection = letterScrollViewCollection;
+}
+
+- (NSArray *) imageViewCollection {
+    if (!_imageViewCollection) {
+        _imageViewCollection = [[NSArray alloc] initWithObjects:[[ImageView alloc] init], [[ImageView alloc] init], nil];
+    }
+    return _imageViewCollection;
+}
+
+- (void)setImageViewCollection:(NSArray *)imageViewCollection {
+    _imageViewCollection = imageViewCollection;
+    for (ImageView *iv in _imageViewCollection) {
+        [iv addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:iv action:@selector(pinch:)]];
+    }
+}
+
+- (NSArray *) scoreTextCollection {
+    if (!_scoreTextCollection) {
+        _scoreTextCollection = [[NSArray alloc] initWithObjects:[[UIButton alloc] init], [[UIButton alloc] init], nil];
+    }
+    
+    return _scoreTextCollection;
+}
+
+- (void) setScoreTextCollection:(NSArray *)scoreTextCollection {
+    _scoreTextCollection = scoreTextCollection;
+}
+
+// Get the big view or small view for ipad or iphone respectively
+- (LetterScrollView *) getViewLetterScrollView {
+    if (self.playBig) {
+        if ([self.letterScrollViewCollection count] > 1) {
+            NSException* myException = [NSException exceptionWithName:@"FileNotFoundException" reason:@"File Not Found on System" userInfo:nil];
+            @throw myException;
+        }
+        
+        for (LetterScrollView *lsv in self.letterScrollViewCollection) {
+            if ([lsv isKindOfClass:[BigLetterScrollView class]]) {
+                return lsv;
+            }
+        }
+    } else {
+        return self.letterScrollView;
+    }
+}
+
+// Get the big view or small view for ipad or iphone respectively
+- (ImageView *) getViewImageView {
+    if (self.playBig) {
+        if ([self.imageViewCollection count] > 1) {
+            NSException* myException = [NSException exceptionWithName:@"ImageCollectionCorruptException" reason:@"Image View has too many elements" userInfo:nil];
+            @throw myException;
+        }
+        
+        for (ImageView *iv in self.imageViewCollection) {
+            if ([iv isKindOfClass:[ImageView class]]) {
+                return iv;
+            }
+        }
+    } else {
+        return self.imageView;
+    }
+}
+
+
 - (GameData *) gameData {
     if (!_gameData) {
         _gameData = [[GameData alloc] init];
@@ -117,16 +207,16 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     [super viewDidLoad];
 	   
     // 320, 153
-    //self.letterScrollView.contentSize = CGSizeMake(1640.0, 640.0);
+    //[self getViewLetterScrollView].contentSize = CGSizeMake(1640.0, 640.0);
     
     [self setupWord];
-    [self.letterScrollView setupLetters:self.letterList];
+    [[self getViewLetterScrollView] setupLetters:self.letterList];
     
     [self updateScore];
 }
 
 - (void) setupWord {
-    [self.imageView changeImage:self.imageList[self.wordIndex]];
+    [[self getViewImageView] changeImage:self.imageList[self.wordIndex]];
     [self refreshWord];
 }
 
@@ -134,25 +224,25 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
     if (self) {
         [self.mysteryWord initCurrentWord:self.wordList[self.wordIndex]];
-        self.letterScrollView.mysteryWord = self.mysteryWord;
-        [self.letterScrollView refreshWord:[self.mysteryWord guessedWord] withMysteryWord:self.mysteryWord];
+        [self getViewLetterScrollView].mysteryWord = self.mysteryWord;
+        [[self getViewLetterScrollView] refreshWord:[self.mysteryWord guessedWord] withMysteryWord:self.mysteryWord];
     }
 
     // If easy fill out all but first letter, if medium give half word
     if (self.level == 0) {
         [self.mysteryWord hint:self.mysteryWord.actualWord.count-1];
-        [self.letterScrollView resetWordLetters:[self.mysteryWord guessedWord]];
+        [[self getViewLetterScrollView] resetWordLetters:[self.mysteryWord guessedWord]];
     } else if (self.level == 1) {
         [self.mysteryWord hint:(self.mysteryWord.actualWord.count/2)];
-        [self.letterScrollView resetWordLetters:[self.mysteryWord guessedWord]];
+        [[self getViewLetterScrollView] resetWordLetters:[self.mysteryWord guessedWord]];
     }
     
     [self.gameData saveGameData:self.level forLastIndex:self.wordIndex forNumberCorrect:self.gameData.numberCorrect.integerValue forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
 }
 - (IBAction)giveMeAHint:(UIButton *)sender {
-    if (self.letterScrollView) {
+    if ([self getViewLetterScrollView]) {
         [self.mysteryWord hint];
-        [self.letterScrollView resetWordLetters:[self.mysteryWord guessedWord]];
+        [[self getViewLetterScrollView] resetWordLetters:[self.mysteryWord guessedWord]];
     }
 }
 
@@ -166,7 +256,7 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     
     [self.mysteryWord clearWord];
     [self refreshWord];
-    [self.imageView changeImage:self.imageList[self.wordIndex]];
+    [[self getViewImageView] changeImage:self.imageList[self.wordIndex]];
     */
     
     if (!self.gameData.isRandomArrayLoaded) {
@@ -188,8 +278,8 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     
     [self.mysteryWord clearWord];
     [self refreshWord];
-    [self.imageView changeImage:self.imageList[intnum]];
-     
+    [[self getViewImageView] changeImage:self.imageList[intnum]];
+    
 }
 - (IBAction)showScore:(id)sender {
     [self updateScore];
@@ -198,9 +288,15 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 }
 
 - (void) updateScore {
-    [self.scoreText setTitle:[NSString stringWithFormat:@"Correct: %d Wrong: %d", self.gameData.numberCorrect.intValue, self.gameData.numberWrong.intValue] forState:UIControlStateNormal];
-    self.scoreText.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    
+    if (self.playBig) {
+        for (UIButton *button in self.scoreTextCollection) {
+            [button setTitle:[NSString stringWithFormat:@"Correct: %d Wrong: %d", self.gameData.numberCorrect.intValue, self.gameData.numberWrong.intValue] forState:UIControlStateNormal];
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        }
+    } else {
+        [self.scoreText setTitle:[NSString stringWithFormat:@"Correct: %d Wrong: %d", self.gameData.numberCorrect.intValue, self.gameData.numberWrong.intValue] forState:UIControlStateNormal];
+        self.scoreText.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    }
 }
 
 - (IBAction)resetScore:(id)sender {
@@ -215,7 +311,7 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
 - (void) winner {
     NSLog(@"winner!");
-    [self.imageView changeImage:WIN_IMAGE];
+    [[self getViewImageView] changeImage:WIN_IMAGE];
     
     [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:self.gameData.numberCorrect.integerValue+1 forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
     
@@ -235,13 +331,13 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
 - (void) wrong {
     NSLog(@"wrong!");
-    [self.imageView changeImage:WRONG_IMAGE];
+    [[self getViewImageView] changeImage:WRONG_IMAGE];
     
     dispatch_queue_t wrongQ = dispatch_queue_create("temporary  wrong image", NULL);
     dispatch_async(wrongQ, ^{
         [NSThread sleepForTimeInterval:2.0f];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.imageView changeImage:self.imageList[self.wordIndex]];
+            [[self getViewImageView] changeImage:self.imageList[self.wordIndex]];
         });
     });
     

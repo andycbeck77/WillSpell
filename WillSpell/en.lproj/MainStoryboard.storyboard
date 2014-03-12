@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tfn-BY-BzX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tfn-BY-BzX">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1FP-wM-FQn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="277" y="18"/>
+            <point key="canvasLocation" x="275" y="14"/>
         </scene>
         <!--Spell View Controller-->
         <scene sceneID="5De-54-rTb">
@@ -83,16 +83,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a0H-6L-ixe" customClass="ImageView">
-                                <rect key="frame" x="66" y="15" width="190" height="192"/>
+                                <rect key="frame" x="65" y="5" width="190" height="187"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottomLeft" translatesAutoresizingMaskIntoConstraints="NO" id="9EI-jm-lzG" customClass="LetterScrollView">
-                                <rect key="frame" x="0.0" y="250" width="640" height="320"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottomLeft" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9EI-jm-lzG" customClass="LetterScrollView">
+                                <rect key="frame" x="0.0" y="225" width="640" height="320"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsB-6t-AjJ">
-                                <rect key="frame" x="290" y="5" width="30" height="26"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsB-6t-AjJ">
+                                <rect key="frame" x="273" y="30" width="41" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="7pC-7t-CUo"/>
                                 </constraints>
@@ -103,24 +103,15 @@
                                     <action selector="giveMeAHint:" destination="jYU-uM-svy" eventType="touchUpInside" id="KML-Jq-kmE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dg-92-MlS">
-                                <rect key="frame" x="292" y="123" width="26" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="L6j-PK-HgJ"/>
-                                    <constraint firstAttribute="width" constant="26" id="akE-LO-qI4"/>
-                                </constraints>
-                                <state key="normal" title=">">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dg-92-MlS">
+                                <rect key="frame" x="283" y="90" width="32" height="64"/>
+                                <state key="normal" title=">"/>
                                 <connections>
                                     <action selector="chooseNextWord:" destination="jYU-uM-svy" eventType="touchUpInside" id="NR1-HE-o4B"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGW-o1-8Al">
-                                <rect key="frame" x="0.0" y="5" width="30" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="wtM-nP-5cD"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGW-o1-8Al">
+                                <rect key="frame" x="0.0" y="27" width="38" height="45"/>
                                 <state key="normal" title="Exit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -129,7 +120,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-HK-iza">
-                                <rect key="frame" x="6" y="215" width="217" height="30"/>
+                                <rect key="frame" x="6" y="200" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Score">
@@ -140,7 +131,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXi-p1-SoA">
-                                <rect key="frame" x="264" y="215" width="46" height="30"/>
+                                <rect key="frame" x="263" y="200" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Reset">
@@ -154,22 +145,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="a0H-6L-ixe" firstAttribute="leading" secondItem="Hrm-kc-Zpt" secondAttribute="leading" constant="66" id="1hc-sN-Kqk"/>
-                            <constraint firstItem="MGW-o1-8Al" firstAttribute="leading" secondItem="Hrm-kc-Zpt" secondAttribute="leading" id="354-ya-5Vi"/>
                             <constraint firstItem="9EI-jm-lzG" firstAttribute="top" secondItem="1pd-HK-iza" secondAttribute="bottom" constant="5" id="3FW-dH-XLh"/>
-                            <constraint firstAttribute="trailing" secondItem="8Dg-92-MlS" secondAttribute="trailing" constant="2" id="3fD-wV-oWR"/>
                             <constraint firstItem="9EI-jm-lzG" firstAttribute="leading" secondItem="Hrm-kc-Zpt" secondAttribute="leading" id="BLv-IT-YZQ"/>
                             <constraint firstAttribute="trailing" secondItem="9EI-jm-lzG" secondAttribute="trailing" constant="-320" id="GA2-dc-0eC"/>
-                            <constraint firstItem="8Dg-92-MlS" firstAttribute="top" secondItem="Hrm-kc-Zpt" secondAttribute="top" constant="123" id="GQF-qO-uaW"/>
                             <constraint firstAttribute="bottom" secondItem="9EI-jm-lzG" secondAttribute="bottom" constant="-90" id="Kr4-jz-C27"/>
                             <constraint firstItem="9EI-jm-lzG" firstAttribute="top" secondItem="nXi-p1-SoA" secondAttribute="bottom" constant="8" symbolic="YES" id="Lo5-5l-nhH"/>
                             <constraint firstItem="nXi-p1-SoA" firstAttribute="centerY" secondItem="1pd-HK-iza" secondAttribute="centerY" id="MTO-8C-cys"/>
                             <constraint firstItem="1pd-HK-iza" firstAttribute="top" secondItem="a0H-6L-ixe" secondAttribute="bottom" constant="8" symbolic="YES" id="PFw-2W-Lzi"/>
                             <constraint firstItem="a0H-6L-ixe" firstAttribute="top" secondItem="Hrm-kc-Zpt" secondAttribute="top" constant="15" id="dUx-1w-ceN"/>
-                            <constraint firstItem="MGW-o1-8Al" firstAttribute="top" secondItem="Hrm-kc-Zpt" secondAttribute="top" constant="5" id="eVV-SH-AYd"/>
                             <constraint firstAttribute="trailing" secondItem="a0H-6L-ixe" secondAttribute="trailing" constant="64" id="jzt-iL-VCl"/>
                             <constraint firstItem="9EI-jm-lzG" firstAttribute="top" secondItem="Hrm-kc-Zpt" secondAttribute="top" constant="250" id="lPH-T8-P93"/>
-                            <constraint firstItem="MsB-6t-AjJ" firstAttribute="top" secondItem="MGW-o1-8Al" secondAttribute="top" id="vrK-Xo-Abg"/>
-                            <constraint firstItem="MsB-6t-AjJ" firstAttribute="trailing" secondItem="Hrm-kc-Zpt" secondAttribute="trailing" id="ySA-fB-OUF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hjK-zP-nUd"/>

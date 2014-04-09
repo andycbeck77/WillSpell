@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tfn-BY-BzX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tfn-BY-BzX">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Spell Intro View Controller-->
@@ -92,7 +92,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsB-6t-AjJ">
-                                <rect key="frame" x="273" y="30" width="41" height="36"/>
+                                <rect key="frame" x="279" y="27" width="41" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="7pC-7t-CUo"/>
                                 </constraints>
@@ -104,14 +104,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dg-92-MlS">
-                                <rect key="frame" x="283" y="90" width="32" height="64"/>
+                                <rect key="frame" x="269" y="77" width="46" height="74"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title=">"/>
                                 <connections>
                                     <action selector="chooseNextWord:" destination="jYU-uM-svy" eventType="touchUpInside" id="NR1-HE-o4B"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGW-o1-8Al">
-                                <rect key="frame" x="0.0" y="27" width="38" height="45"/>
+                                <rect key="frame" x="0.0" y="23" width="38" height="45"/>
                                 <state key="normal" title="Exit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -141,6 +142,17 @@
                                     <action selector="resetScore:" destination="jYU-uM-svy" eventType="touchUpInside" id="C7P-NE-OXU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jx4-Au-Gvy">
+                                <rect key="frame" x="6" y="77" width="46" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="choosePreviousWord:" destination="jYU-uM-svy" eventType="touchUpInside" id="5g9-4q-3ts"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -159,9 +171,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="hjK-zP-nUd"/>
                     <connections>
-                        <outlet property="imageView" destination="a0H-6L-ixe" id="xUh-hU-1Cs"/>
+                        <outlet property="imageView" destination="a0H-6L-ixe" id="gr6-nN-fnN"/>
                         <outlet property="letterScrollView" destination="9EI-jm-lzG" id="Ydh-eR-Ddn"/>
                         <outlet property="scoreText" destination="1pd-HK-iza" id="NeU-zA-Zrb"/>
+                        <outletCollection property="backCollection" destination="jx4-Au-Gvy" id="R15-YR-uV2"/>
+                        <outletCollection property="backCollection" destination="jx4-Au-Gvy" id="yn3-R6-tbD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFp-QS-fgE" userLabel="First Responder" sceneMemberID="firstResponder"/>

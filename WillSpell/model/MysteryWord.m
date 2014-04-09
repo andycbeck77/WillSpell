@@ -20,12 +20,16 @@ NSString *const DEFAULT_CHAR = @"-";
     return @[@"APPLE",@"BANANA",@"PEAR",@"ORANGE"];
 }
 
+@synthesize guessedWord = _guessedWord;
+
 - (NSMutableArray *) guessedWord {
     if (!_guessedWord) {
         _guessedWord = [[NSMutableArray alloc] init];
     }
     return _guessedWord;
 }
+
+@synthesize actualWord = _actualWord;
 
 - (NSMutableArray *) actualWord {
     if(!_actualWord) {
@@ -89,9 +93,8 @@ NSString *const DEFAULT_CHAR = @"-";
 
 - (BOOL) completedWord {
     BOOL foundMatch = YES;
-    for (NSUInteger currentLetterIndex = 0; currentLetterIndex < _guessedWord.count-1; currentLetterIndex++) {
+    for (NSUInteger currentLetterIndex = 0; currentLetterIndex < _guessedWord.count; currentLetterIndex++) {
         if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
-            _guessedWord[currentLetterIndex] = _actualWord[currentLetterIndex];
             foundMatch = NO;
             break;
         }

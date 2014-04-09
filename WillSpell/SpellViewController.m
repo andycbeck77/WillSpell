@@ -21,8 +21,6 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
 @interface SpellViewController () //<UIScrollViewDelegate>
 
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewCollection;
-@property (strong, nonatomic) IBOutletCollection(LetterScrollView) NSArray *letterScrollViewCollection;
 @property (weak, nonatomic) IBOutlet ImageView *imageView;
 @property (weak, nonatomic) IBOutlet LetterScrollView *letterScrollView;
 
@@ -32,7 +30,7 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 @property (strong, nonatomic) MysteryWord *mysteryWord;
 
 @property (weak, nonatomic) IBOutlet UIButton *scoreText;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *scoreTextCollection;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *backCollection;
 @property (strong, nonatomic) GameData *gameData;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
@@ -42,11 +40,6 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
 @synthesize imageView = _imageView;
 @synthesize letterScrollView = _letterScrollView;
-
-@synthesize imageViewCollection = _imageViewCollection;
-@synthesize letterScrollViewCollection = _letterScrollViewCollection;
-
-@synthesize scoreTextCollection = _scoreTextCollection;
 
 - (NSArray *)letterList {
     return @[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
@@ -59,22 +52,6 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 - (NSArray *) wordList {
     return @[@"APPLE",@"BEAR",@"BEE",@"CAMERA",@"CUPCAKE",@"DOG",@"DRAGON",@"EGG",@"ELEPHANT",@"FLAG",@"FLOWER",@"GHOST",@"GIRAFFE",@"HEART",@"HIPPO",@"ICE CREAM",@"JELLYFISH",@"LADYBUG",@"LIGHT",@"LION",@"KEY",@"KITE",@"MOUSE",@"MUSHROOM",@"MUSIC",@"NUT",@"PENGUIN",@"OCTOPUS",@"OWL",@"QUEEN",@"RABBIT",@"STOP SIGN",@"SHIELD",@"TRAIN",@"UMBRELLA",@"VOLCANO",@"WHALE",@"XYLOPHONE",@"ZEBRA"];
 }
-
-//- (NSArray *) imageListNewOld {
-//    return @[@"apple-free.jpg", @"banana-free.jpg",@"carrot-free.jpg",@"dog-free.jpg", @"egg-free.jpg",@"flag-free.jpg",@"grapes-free.jpg",@"orange-free.jpg"];
-//}
-
-//- (NSArray *) wordListNewOld {
-//    return @[@"APPLE",@"BANANA",@"CARROT",@"DOG",@"EGG",@"FLAG",@"GRAPES",@"ORANGE"];
-//}
-
-//- (NSArray *) imageListOld {
-//    return @[@"redapple.png",@"banana-edit2.jpg",@"carrot.jpg",@"donut.jpg",@"egg.jpg",@"flag.jpg",@"grape.jpg",@"hamburger.jpg",@"greenpear.png",@"orange.png"];
-//}
-
-//- (NSArray *) wordListOld {
-//    return @[@"APPLE",@"BANANA",@"CARROT",@"DONUT",@"EGG",@"FLAG",@"GRAPES",@"HAMBURGER",@"PEAR",@"ORANGE"];
-//}
 
 - (NSArray *)colorList {
     return @[@"RED",@"YELLOW",@"GREEN",@"ORANGE"];
@@ -114,84 +91,15 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     [imageView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:imageView action:@selector(pinch:)]];
 }
 
-- (NSArray *) letterScrollViewCollection {
-    if (!_letterScrollViewCollection) {
-        _letterScrollViewCollection = [[NSArray alloc] initWithObjects:[[BigLetterScrollView alloc] init], [[LetterScrollView alloc] init], nil];
-    }
-
-    for (LetterScrollView *lsv in _letterScrollViewCollection) {
-        if (!lsv.winnerDelegate) {
-            lsv.winnerDelegate = self;
-        }
-    }
-    
-    return _letterScrollViewCollection;
-}
-
-- (void) setLetterScrollViewCollection:(NSArray *)letterScrollViewCollection {
-    _letterScrollViewCollection = letterScrollViewCollection;
-}
-
-- (NSArray *) imageViewCollection {
-    if (!_imageViewCollection) {
-        _imageViewCollection = [[NSArray alloc] initWithObjects:[[ImageView alloc] init], [[ImageView alloc] init], nil];
-    }
-    return _imageViewCollection;
-}
-
-- (void)setImageViewCollection:(NSArray *)imageViewCollection {
-    _imageViewCollection = imageViewCollection;
-    for (ImageView *iv in _imageViewCollection) {
-        [iv addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:iv action:@selector(pinch:)]];
-    }
-}
-
-- (NSArray *) scoreTextCollection {
-    if (!_scoreTextCollection) {
-        _scoreTextCollection = [[NSArray alloc] initWithObjects:[[UIButton alloc] init], [[UIButton alloc] init], nil];
-    }
-    
-    return _scoreTextCollection;
-}
-
-- (void) setScoreTextCollection:(NSArray *)scoreTextCollection {
-    _scoreTextCollection = scoreTextCollection;
-}
-
 // Get the big view or small view for ipad or iphone respectively
 - (LetterScrollView *) getViewLetterScrollView {
-    if (self.playBig) {
-        if ([self.letterScrollViewCollection count] > 1) {
-            NSException* myException = [NSException exceptionWithName:@"FileNotFoundException" reason:@"File Not Found on System" userInfo:nil];
-            @throw myException;
-        }
-        
-        for (LetterScrollView *lsv in self.letterScrollViewCollection) {
-            if ([lsv isKindOfClass:[BigLetterScrollView class]]) {
-                return lsv;
-            }
-        }
-    } else {
-        return self.letterScrollView;
-    }
+    return self.letterScrollView;
 }
+
 
 // Get the big view or small view for ipad or iphone respectively
 - (ImageView *) getViewImageView {
-    if (self.playBig) {
-        if ([self.imageViewCollection count] > 1) {
-            NSException* myException = [NSException exceptionWithName:@"ImageCollectionCorruptException" reason:@"Image View has too many elements" userInfo:nil];
-            @throw myException;
-        }
-        
-        for (ImageView *iv in self.imageViewCollection) {
-            if ([iv isKindOfClass:[ImageView class]]) {
-                return iv;
-            }
-        }
-    } else {
-        return self.imageView;
-    }
+    return self.imageView;
 }
 
 
@@ -213,6 +121,10 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     [[self getViewLetterScrollView] setupLetters:self.letterList];
     
     [self updateScore];
+    
+    for (UIButton *bckBtn in self.backCollection) {
+            bckBtn.enabled = NO;
+    }
 }
 
 - (void) setupWord {
@@ -246,6 +158,15 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     }
 }
 
+- (IBAction)choosePreviousWord:(UIButton *)sender {
+    if (self.randomIndex > 0) {
+        self.randomIndex--;
+    }
+
+    [self updateIndexForView];
+}
+
+
 - (IBAction)chooseNextWord:(UIButton *)sender {
     /*
     if (self.wordIndex >= self.wordList.count-1) {
@@ -271,6 +192,13 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     } else {
         self.randomIndex++;
     }
+    
+    [self updateIndexForView];
+}
+
+
+- (void) updateIndexForView {
+        
 
     NSNumber *num = [self.gameData.randomizedIndices objectAtIndex:self.randomIndex];
     int intnum = [num integerValue];
@@ -280,7 +208,14 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     [self refreshWord];
     [[self getViewImageView] changeImage:self.imageList[intnum]];
     
+    if (self.randomIndex > 0) {
+        for (UIButton *bckBtn in self.backCollection) {
+            bckBtn.enabled = YES;
+        }
+    }
+    
 }
+
 - (IBAction)showScore:(id)sender {
     [self updateScore];
     //NSLog([NSString stringWithFormat:@"Correct: %d", self.gameData.numberCorrect.intValue]);
@@ -288,15 +223,8 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 }
 
 - (void) updateScore {
-    if (self.playBig) {
-        for (UIButton *button in self.scoreTextCollection) {
-            [button setTitle:[NSString stringWithFormat:@"Correct: %d Wrong: %d", self.gameData.numberCorrect.intValue, self.gameData.numberWrong.intValue] forState:UIControlStateNormal];
-            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        }
-    } else {
         [self.scoreText setTitle:[NSString stringWithFormat:@"Correct: %d Wrong: %d", self.gameData.numberCorrect.intValue, self.gameData.numberWrong.intValue] forState:UIControlStateNormal];
         self.scoreText.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
 }
 
 - (IBAction)resetScore:(id)sender {
@@ -327,6 +255,14 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     }
     
     [self.audioPlayer play];
+    
+    dispatch_queue_t correctQ = dispatch_queue_create("temporary  correct image", NULL);
+    dispatch_async(correctQ, ^{
+        [NSThread sleepForTimeInterval:2.0f];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self chooseNextWord:nil];
+        });
+    });
 }
 
 - (void) wrong {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="1Be-zX-2FQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="1Be-zX-2FQ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Spell Intro View Controller-->
@@ -131,9 +131,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outletCollection property="imageViewCollection" destination="aNc-Ne-cnf" id="Uc0-97-E0z"/>
-                        <outletCollection property="letterScrollViewCollection" destination="xvD-ZZ-nui" id="q90-he-3Lw"/>
-                        <outletCollection property="scoreTextCollection" destination="y2z-a5-cI9" id="Lxw-H0-VZr"/>
+                        <outlet property="imageView" destination="aNc-Ne-cnf" id="mmj-cA-y4J"/>
+                        <outlet property="letterScrollView" destination="xvD-ZZ-nui" id="Pfn-UF-odT"/>
+                        <outlet property="scoreText" destination="y2z-a5-cI9" id="5PN-eU-TGB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWO-sN-gmq" userLabel="First Responder" sceneMemberID="firstResponder"/>

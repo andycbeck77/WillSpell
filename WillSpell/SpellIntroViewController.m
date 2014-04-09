@@ -47,17 +47,11 @@
 }
 
 - (void) playTheGame:(BOOL) goBig {
-    [self.gameData loadGameData];
-    
-    NSString *level = @"-";
-    NSString *lastIndex = @"-";
-    
-    level = self.gameData.level;
-    lastIndex = self.gameData.wordIndex;
+    /*[self.gameData loadGameData];
     
     NSLog(@"level:%d lastIndex:%d",level.intValue,lastIndex.intValue);
     
-    [self.levelSelect setSelectedSegmentIndex:self.gameData.level.intValue];
+    [self.levelSelect setSelectedSegmentIndex:self.gameData.level.intValue];*/
     
     self.spellViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"spellviewcontroller"];
     self.spellViewController.playBig = goBig;
@@ -82,6 +76,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self reloadGameData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,4 +99,12 @@
     NSLog(@"Starter Index: %d", self.level);
 }
 
+- (void) reloadGameData {
+    [self.gameData loadGameData];
+    
+    NSLog(@"level:%d lastIndex:%d",self.gameData.level.intValue,self.gameData.wordIndex.intValue);
+    
+    [self.levelSelect setSelectedSegmentIndex:self.gameData.level.intValue];
+
+}
 @end

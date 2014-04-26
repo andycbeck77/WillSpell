@@ -171,11 +171,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="hjK-zP-nUd"/>
                     <connections>
+                        <outlet property="backButton" destination="jx4-Au-Gvy" id="AWU-Gt-z4T"/>
                         <outlet property="imageView" destination="a0H-6L-ixe" id="gr6-nN-fnN"/>
                         <outlet property="letterScrollView" destination="9EI-jm-lzG" id="Ydh-eR-Ddn"/>
+                        <outlet property="nextButton" destination="8Dg-92-MlS" id="njC-Om-gYV"/>
                         <outlet property="scoreText" destination="1pd-HK-iza" id="NeU-zA-Zrb"/>
-                        <outletCollection property="backCollection" destination="jx4-Au-Gvy" id="R15-YR-uV2"/>
-                        <outletCollection property="backCollection" destination="jx4-Au-Gvy" id="yn3-R6-tbD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFp-QS-fgE" userLabel="First Responder" sceneMemberID="firstResponder"/>

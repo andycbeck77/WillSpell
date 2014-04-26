@@ -28,9 +28,10 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 @property (strong, nonatomic) NSArray *imageList;
 @property (strong, nonatomic) NSArray *wordList;
 @property (strong, nonatomic) MysteryWord *mysteryWord;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *scoreText;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *backCollection;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) GameData *gameData;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
@@ -46,11 +47,11 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 }
 
 - (NSArray *) imageList {
-    return @[@"green_apple.png", @"bear.png",@"bumble_bee.png",@"camera-photo-5.png", @"cupcake_iced_with_cherry.png",@"dog.png",@"dragon.png",@"egg_sunny.png", @"elephant.png", @"flag-us.png", @"rosa.png", @"ghost.png", @"giraffe.png", @"heart-3.png", @"hippo.png", @"ice_cream_2.png", @"jellyfish.png", @"ladybug.png", @"light_bulb.png", @"lion.png", @"key2.png", @"kite.png", @"mouse.png", @"plant-mushroom.png", @"note.png", @"peanut2.png", @"penguin.png", @"octopus.png", @"owl.png", @"queen_large.png", @"rabbit.png", @"road-sign-us-stop.png", @"shield-2.png", @"train2_large.png", @"umbrella-black.png.png", @"volcano", @"whale.png", @"xylophone.png", @"zebra.png"];
+    return @[@"green_apple.png", @"bear.png",@"bumble_bee.png",@"camera-photo-5.png", @"cupcake_iced_with_cherry.png",@"dog.png",@"dragon.png",@"egg_sunny.png", @"elephant.png", @"flag-us.png", @"rosa.png", @"ghost.png", @"giraffe.png", @"heart-3.png", @"hippo.png", @"ice_cream_2.png", @"jellyfish.png", @"ladybug.png", @"light_bulb.png", @"lion.png", @"key2.png", @"kite.png", @"mouse.png", @"plant-mushroom.png", @"note.png", @"night_sky.png", @"newspaper.png", @"penguin.png", @"octopus.png", @"owl.png", @"queen_large.png", @"rabbit.png", @"road-sign-us-stop.png", @"shield-2.png", @"train2_large.png", @"umbrella-black.png.png", @"volcano", @"whale.png", @"xylophone.png", @"zebra.png"];
 }
 
 - (NSArray *) wordList {
-    return @[@"APPLE",@"BEAR",@"BEE",@"CAMERA",@"CUPCAKE",@"DOG",@"DRAGON",@"EGG",@"ELEPHANT",@"FLAG",@"FLOWER",@"GHOST",@"GIRAFFE",@"HEART",@"HIPPO",@"ICE CREAM",@"JELLYFISH",@"LADYBUG",@"LIGHT",@"LION",@"KEY",@"KITE",@"MOUSE",@"MUSHROOM",@"MUSIC",@"NUT",@"PENGUIN",@"OCTOPUS",@"OWL",@"QUEEN",@"RABBIT",@"STOP SIGN",@"SHIELD",@"TRAIN",@"UMBRELLA",@"VOLCANO",@"WHALE",@"XYLOPHONE",@"ZEBRA"];
+    return @[@"APPLE",@"BEAR",@"BEE",@"CAMERA",@"CUPCAKE",@"DOG",@"DRAGON",@"EGG",@"ELEPHANT",@"FLAG",@"FLOWER",@"GHOST",@"GIRAFFE",@"HEART",@"HIPPO",@"ICE CREAM",@"JELLYFISH",@"LADYBUG",@"LIGHT",@"LION",@"KEY",@"KITE",@"MOUSE",@"MUSHROOM",@"MUSIC",@"NIGHT",@"NEWSPAPER",@"PENGUIN",@"OCTOPUS",@"OWL",@"QUEEN",@"RABBIT",@"STOP SIGN",@"SHIELD",@"TRAIN",@"UMBRELLA",@"VOLCANO",@"WHALE",@"XYLOPHONE",@"ZEBRA"];
 }
 
 - (NSArray *)colorList {
@@ -122,8 +123,8 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     
     [self updateScore];
     
-    for (UIButton *bckBtn in self.backCollection) {
-            bckBtn.enabled = NO;
+    if (self.backButton) {
+        self.backButton.enabled = NO;
     }
 }
 
@@ -198,8 +199,6 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 
 
 - (void) updateIndexForView {
-        
-
     NSNumber *num = [self.gameData.randomizedIndices objectAtIndex:self.randomIndex];
     int intnum = [num integerValue];
     self.wordIndex = intnum;
@@ -209,11 +208,14 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
     [[self getViewImageView] changeImage:self.imageList[intnum]];
     
     if (self.randomIndex > 0) {
-        for (UIButton *bckBtn in self.backCollection) {
-            bckBtn.enabled = YES;
+        if (self.backButton) {
+            self.backButton.enabled = YES;
         }
     }
     
+    if (self.nextButton) {
+        self.nextButton.enabled = YES;
+    }
 }
 
 - (IBAction)showScore:(id)sender {
@@ -240,6 +242,10 @@ NSString *const WRONG_IMAGE = @"wrong4.png";
 - (void) winner {
     NSLog(@"winner!");
     [[self getViewImageView] changeImage:WIN_IMAGE];
+    
+    if (self.nextButton) {
+        self.nextButton.enabled = NO;
+    }
     
     [self.gameData saveGameData:self.gameData.level.integerValue forLastIndex:self.gameData.wordIndex.integerValue forNumberCorrect:self.gameData.numberCorrect.integerValue+1 forNumberWrong:self.gameData.numberWrong.integerValue forNumberSkipped:self.gameData.numberSkipped.integerValue];
     

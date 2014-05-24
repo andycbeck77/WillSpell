@@ -9,6 +9,7 @@
 #import "MysteryWord.h"
 
 NSString *const DEFAULT_CHAR = @"-";
+NSString *const SPACE_CHAR = @" ";
 
 @interface MysteryWord()
 
@@ -16,9 +17,6 @@ NSString *const DEFAULT_CHAR = @"-";
 
 @implementation MysteryWord
 
-- (NSArray *)wordList {
-    return @[@"APPLE",@"BANANA",@"PEAR",@"ORANGE"];
-}
 
 @synthesize guessedWord = _guessedWord;
 
@@ -54,8 +52,13 @@ NSString *const DEFAULT_CHAR = @"-";
         
         //_actualWord[currentLetterIndex] = currentLetter;
         [self.actualWord addObject:currentLetter];
-        //_guessedWord[currentLetterIndex] = @"-";
-        [self.guessedWord addObject:DEFAULT_CHAR];
+        
+        if ([currentLetter isEqualToString:SPACE_CHAR]) {
+            [self.guessedWord addObject:SPACE_CHAR];
+        } else {
+            //_guessedWord[currentLetterIndex] = @"-";
+            [self.guessedWord addObject:DEFAULT_CHAR];
+        }
     }
 }
 
@@ -94,7 +97,7 @@ NSString *const DEFAULT_CHAR = @"-";
 - (BOOL) completedWord {
     BOOL foundMatch = YES;
     for (NSUInteger currentLetterIndex = 0; currentLetterIndex < _guessedWord.count; currentLetterIndex++) {
-        if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
+        if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]] && ![_actualWord[currentLetterIndex] isEqualToString:@" "]) {
             foundMatch = NO;
             break;
         }

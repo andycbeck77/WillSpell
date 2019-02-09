@@ -83,6 +83,14 @@
 		698908EB1877AF8400BFC0DF /* X.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 698908D51877AF8400BFC0DF /* X.jpg */; };
 		698908EC1877AF8400BFC0DF /* Y.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 698908D61877AF8400BFC0DF /* Y.jpg */; };
 		698908ED1877AF8400BFC0DF /* Z.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 698908D71877AF8400BFC0DF /* Z.jpg */; };
+		69A0E2B7192926BA00C73321 /* GameIcon3_76.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2B6192926BA00C73321 /* GameIcon3_76.png */; };
+		69A0E2B9192926C600C73321 /* GameIcon3_152.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2B8192926C600C73321 /* GameIcon3_152.png */; };
+		69A0E2BB192926D100C73321 /* GameIcon3_40.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2BA192926D100C73321 /* GameIcon3_40.png */; };
+		69A0E2BD192926FB00C73321 /* GameIcon3_29.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2BC192926FB00C73321 /* GameIcon3_29.png */; };
+		69A0E2D519292E7200C73321 /* WillSpell_Launch2-portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2D319292E7200C73321 /* WillSpell_Launch2-portrait.png */; };
+		69A0E2D719292ED000C73321 /* WillSpell_Launch2-portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2D619292ED000C73321 /* WillSpell_Launch2-portrait@2x.png */; };
+		69A0E2DA19292F0E00C73321 /* WillSpell_Launch2-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2D819292F0E00C73321 /* WillSpell_Launch2-landscape.png */; };
+		69A0E2DB19292F0E00C73321 /* WillSpell_Launch2-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A0E2D919292F0E00C73321 /* WillSpell_Launch2-landscape@2x.png */; };
 		69BB539717ED322C000CA484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB539617ED322C000CA484 /* UIKit.framework */; };
 		69BB539917ED322C000CA484 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB539817ED322C000CA484 /* Foundation.framework */; };
 		69BB539B17ED322C000CA484 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BB539A17ED322C000CA484 /* CoreGraphics.framework */; };
@@ -188,6 +196,14 @@
 		698908D51877AF8400BFC0DF /* X.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = X.jpg; sourceTree = "<group>"; };
 		698908D61877AF8400BFC0DF /* Y.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Y.jpg; sourceTree = "<group>"; };
 		698908D71877AF8400BFC0DF /* Z.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Z.jpg; sourceTree = "<group>"; };
+		69A0E2B6192926BA00C73321 /* GameIcon3_76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon3_76.png; sourceTree = "<group>"; };
+		69A0E2B8192926C600C73321 /* GameIcon3_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon3_152.png; sourceTree = "<group>"; };
+		69A0E2BA192926D100C73321 /* GameIcon3_40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon3_40.png; sourceTree = "<group>"; };
+		69A0E2BC192926FB00C73321 /* GameIcon3_29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon3_29.png; sourceTree = "<group>"; };
+		69A0E2D319292E7200C73321 /* WillSpell_Launch2-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WillSpell_Launch2-portrait.png"; sourceTree = "<group>"; };
+		69A0E2D619292ED000C73321 /* WillSpell_Launch2-portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WillSpell_Launch2-portrait@2x.png"; sourceTree = "<group>"; };
+		69A0E2D819292F0E00C73321 /* WillSpell_Launch2-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WillSpell_Launch2-landscape.png"; sourceTree = "<group>"; };
+		69A0E2D919292F0E00C73321 /* WillSpell_Launch2-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WillSpell_Launch2-landscape@2x.png"; sourceTree = "<group>"; };
 		69BB539317ED322C000CA484 /* WillSpell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WillSpell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BB539617ED322C000CA484 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69BB539817ED322C000CA484 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -320,11 +336,19 @@
 		69BB53C817ED3958000CA484 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				69A0E2D319292E7200C73321 /* WillSpell_Launch2-portrait.png */,
+				69A0E2D619292ED000C73321 /* WillSpell_Launch2-portrait@2x.png */,
+				69A0E2D819292F0E00C73321 /* WillSpell_Launch2-landscape.png */,
+				69A0E2D919292F0E00C73321 /* WillSpell_Launch2-landscape@2x.png */,
 				6964809D18B6FC0800B0E5F7 /* WillSpell_Launch2_2x.png */,
 				6964809E18B6FC0800B0E5F7 /* WillSpell_Launch2_568h_2x.png */,
+				69A0E2BC192926FB00C73321 /* GameIcon3_29.png */,
+				69A0E2BA192926D100C73321 /* GameIcon3_40.png */,
 				6964809718B6F90100B0E5F7 /* GameIcon3_58.png */,
+				69A0E2B6192926BA00C73321 /* GameIcon3_76.png */,
 				6964809818B6F90100B0E5F7 /* GameIcon3_80.png */,
 				6964809918B6F90100B0E5F7 /* GameIcon3_120.png */,
+				69A0E2B8192926C600C73321 /* GameIcon3_152.png */,
 				693F9231187F8582002723B8 /* green_apple.png */,
 				693F9233187F85A2002723B8 /* bear.png */,
 				693F9235187F85BE002723B8 /* bumble_bee.png */,
@@ -457,6 +481,7 @@
 				698908E91877AF8400BFC0DF /* V.jpg in Resources */,
 				693F9268187F86FC002723B8 /* shield-2.png in Resources */,
 				69D5FBD518C801FB0077A693 /* IPad.storyboard in Resources */,
+				69A0E2BB192926D100C73321 /* GameIcon3_40.png in Resources */,
 				696480A018B6FC0800B0E5F7 /* WillSpell_Launch2_568h_2x.png in Resources */,
 				693F9260187F86FC002723B8 /* lion.png in Resources */,
 				698908EA1877AF8400BFC0DF /* W.jpg in Resources */,
@@ -484,13 +509,16 @@
 				698908ED1877AF8400BFC0DF /* Z.jpg in Resources */,
 				693F9234187F85A2002723B8 /* bear.png in Resources */,
 				69BB53B017ED322C000CA484 /* MainStoryboard.storyboard in Resources */,
+				69A0E2B9192926C600C73321 /* GameIcon3_152.png in Resources */,
 				698908D91877AF8400BFC0DF /* F.jpg in Resources */,
 				693F9242187F8634002723B8 /* elephant.png in Resources */,
 				698908E21877AF8400BFC0DF /* O.jpg in Resources */,
 				693F923C187F85FE002723B8 /* dog.png in Resources */,
 				69013A6F1884B65700BE3F44 /* will_spell_stacked_2.png in Resources */,
 				698908D81877AF8400BFC0DF /* E.jpg in Resources */,
+				69A0E2BD192926FB00C73321 /* GameIcon3_29.png in Resources */,
 				693F926A187F86FC002723B8 /* umbrella-black.png.png in Resources */,
+				69A0E2D519292E7200C73321 /* WillSpell_Launch2-portrait.png in Resources */,
 				693F9236187F85BE002723B8 /* bumble_bee.png in Resources */,
 				693F9266187F86FC002723B8 /* rabbit.png in Resources */,
 				693F9250187F869E002723B8 /* ladybug.png in Resources */,
@@ -509,6 +537,7 @@
 				693F9232187F8582002723B8 /* green_apple.png in Resources */,
 				693F9248187F864F002723B8 /* giraffe.png in Resources */,
 				698908E61877AF8400BFC0DF /* S.jpg in Resources */,
+				69A0E2DB19292F0E00C73321 /* WillSpell_Launch2-landscape@2x.png in Resources */,
 				693F926B187F86FC002723B8 /* whale.png in Resources */,
 				69D519FD188DBF7200F1E4BF /* ice_cream_2.png in Resources */,
 				698908DD1877AF8400BFC0DF /* J.jpg in Resources */,
@@ -522,6 +551,7 @@
 				6964809F18B6FC0800B0E5F7 /* WillSpell_Launch2_2x.png in Resources */,
 				693F9252187F86A8002723B8 /* light_bulb.png in Resources */,
 				693F9265187F86FC002723B8 /* plant-mushroom.png in Resources */,
+				69A0E2B7192926BA00C73321 /* GameIcon3_76.png in Resources */,
 				693F9244187F863D002723B8 /* flag-us.png in Resources */,
 				69D519FB188DBEB000F1E4BF /* key2.png in Resources */,
 				698908EC1877AF8400BFC0DF /* Y.jpg in Resources */,
@@ -534,9 +564,11 @@
 				69D519F9188DBDDA00F1E4BF /* penguin.png in Resources */,
 				693F926C187F86FC002723B8 /* zebra.png in Resources */,
 				698908DC1877AF8400BFC0DF /* I.jpg in Resources */,
+				69A0E2D719292ED000C73321 /* WillSpell_Launch2-portrait@2x.png in Resources */,
 				698908E81877AF8400BFC0DF /* U.jpg in Resources */,
 				698908BF1877AA5F00BFC0DF /* B.jpg in Resources */,
 				698908E71877AF8400BFC0DF /* T.jpg in Resources */,
+				69A0E2DA19292F0E00C73321 /* WillSpell_Launch2-landscape.png in Resources */,
 				693F9240187F861A002723B8 /* egg_sunny.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

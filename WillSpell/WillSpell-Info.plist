@@ -17,9 +17,6 @@
 				<string>GameIcon3_120</string>
 				<string>GameIcon3_80</string>
 				<string>GameIcon3_58</string>
-				<string>GameIcon2_120</string>
-				<string>GameIcon2_80</string>
-				<string>GameIcon2_58</string>
 			</array>
 		</dict>
 	</dict>
@@ -36,14 +33,11 @@
 				<string>GameIcon3_120</string>
 				<string>GameIcon3_80</string>
 				<string>GameIcon3_58</string>
-				<string>GameIcon2_120</string>
-				<string>GameIcon2_80</string>
-				<string>GameIcon2_58</string>
 			</array>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>web.becka.starter.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.codezooco.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

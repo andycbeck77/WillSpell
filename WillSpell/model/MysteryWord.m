@@ -78,9 +78,19 @@ NSString *const SPACE_CHAR = @" ";
 
 - (void) hint:(NSUInteger) numberOfLetters {
     BOOL foundMatch = NO;
-    while (numberOfLetters > 0) {
+    int foundSpaces = 0;
+    
+    for (NSInteger currentLetterIndex = _guessedWord.count-1; currentLetterIndex >= 0; currentLetterIndex--) {
+        if ([SPACE_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
+            foundSpaces++;
+        }
+    }
+    
+    while (numberOfLetters-foundSpaces > 0) {
         for (NSInteger currentLetterIndex = _guessedWord.count-1; currentLetterIndex >= 0; currentLetterIndex--) {
-            if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
+            if ([SPACE_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
+                continue;
+            } else if ([DEFAULT_CHAR isEqualToString:(NSString *)_guessedWord[currentLetterIndex]]) {
                 _guessedWord[currentLetterIndex] = _actualWord[currentLetterIndex];
                 numberOfLetters--;
                 foundMatch = YES;
